@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <div class="login_form">
+        <!-- login in form  -->
+        <div class="form sign_in">
+            <h2>Sign In</h2>
+            <label>
+                <span>Email Address</span>
+                <input type="email" name="email">
+            </label>
+            <label>
+                <span>Password</span>
+                <input type="password" name="password">
+            </label>
+            <!-- <p id="for-pass-submit" class="forgot-pass">Forgot Password ?</p> -->
+            <button id="submit-login" class="submit" type="button">LOGIN</button>
+            <p class="footer-login">-Create by cs326-final-team-beta-</p>
+        </div>
+
+        <!-- signup form -->
+        <div class="sigup_form">
+            <div class="img">
+                <div class="img-text show_signup">
+                    <h2>New?</h2>
+                    <p>Sign up and discover great amount of new plant items!</p>
+                </div>
+                <div class="img-text show_login">
+                    <h2>Already Have?</h2>
+                    <p>If you already has an account, please sign in. Here are news for you!</p>
+                </div>
+                <div class="img-btn">
+                    <span class="show_signup">SIGN UP</span>
+                    <span class="show_login">SIGN IN</span>
+                </div>
+            </div>
+
+            <div class="form sign-up">
+                <h2>Sign Up</h2>
+                <label>
+                    <span>Name</span>
+                    <input type="text">
+                </label>
+                <label>
+                    <span>Email</span>
+                    <input type="email">
+                </label>
+                <label>
+                    <span>Password</span>
+                    <input type="password">
+                </label>
+                <label>
+                    <span>Confirm Password</span>
+                    <input type="password">
+                </label>
+                <button id="submit-signup" type="button" class="submit">Sign Up HERE</button>
+            </div>
+        </div>
+        <script type="text/javascript" src="login.js"></script>
+</body>
+
+</html>
