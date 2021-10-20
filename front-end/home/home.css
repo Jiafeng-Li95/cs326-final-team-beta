@@ -1,0 +1,49 @@
+
+
+img {
+  width: 30px;
+  height: 30px;
+}
+
+p {
+    display: inline;
+    font-size: 1vm;
+    font-weight: bold;
+    color:#466d1d;
+}
+
+.menu-options{
+    float: right;
+    display: inline;
+    border: none;
+
+
+}
+
+button:hover{
+    background-color: #466d1d !important;
+}
+
+.header-section{
+    display: inline;
+}
+
+.left-bar{
+    display: inline;
+}
+
+.d-flex{
+    width:30% !important;
+    margin:auto;
+    margin-top:30px;
+}
+
+.btn{
+    background-color:white !important;
+    border: none !important;
+}
+
+.vendor-list{
+    height: 100%;
+    overflow: auto;
+}
