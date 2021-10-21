@@ -47,3 +47,7 @@ button:hover{
     height: 100%;
     overflow: auto;
 }
+
+.search-bar{
+    border-right-width: 5px !important;
+}
