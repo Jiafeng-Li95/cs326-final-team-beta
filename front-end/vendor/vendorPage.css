@@ -3,5 +3,13 @@
 }
 
 html body{
-    background-color: mediumaquamarine;
+    background-color: #466d1d;
+}
+
+col-sm{
+    background-color: #466d1d;
+}
+
+.img-rounded{
+    cursor: pointer;
 }
