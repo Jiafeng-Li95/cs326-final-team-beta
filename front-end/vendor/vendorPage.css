@@ -13,3 +13,13 @@ col-sm{
 .img-rounded{
     cursor: pointer;
 }
+
+.card-body{
+    height: 110px;
+    width: 200px;
+}
+
+.card-body-store{
+    height: 80px;
+    width: 200px;
+}
