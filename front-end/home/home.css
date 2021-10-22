@@ -39,12 +39,11 @@ button:hover{
 }
 
 .btn{
-    background-color:white !important;
     border: none !important;
 }
 
 .vendor-list{
-    height: 100%;
+    height: 700px;
     overflow: auto;
 }
 
