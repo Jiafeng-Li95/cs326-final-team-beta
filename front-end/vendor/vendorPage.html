@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendorPage.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+    <title>Vendor Page</title>
+  </head>
+  <body>
+    <div class="row">
+      <div class="col-sm-1">
+        <a class="navbar-brand" href="#">
+          <img src="../images/market.png" width="30" height="30" class="d-inline-block align-top" alt=""> Yardology
+        </a>
+      </div>
+      <div class="col-sm-7"></div>
+      <div class="col-sm-4 d-flex justify-content-end">
+        <button type="button" class="btn btn-success" id="add" data-toggle="modal" data-target="#addModal">
+          <i class="bi bi-plus"></i> Add
+        </button>
+
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">Add a new product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Please add the description for your product: 
+                <textarea class="form-control" id="addProductDescription" rows="5"></textarea>
+                <form>
+                  <div class="form-group">
+                    Please upload an image of your product: 
+                    <input type="file" class="form-control-file" id="productImage">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-success" id="account" data-toggle="modal" data-target="#accountModal">
+          <i class="bi bi-person"></i> Account
+        </button>
+
+        <div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="accountModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="accountModalLabel">Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Address: XXXXXXXXXXXXX
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Edit Account</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-success" id="help" data-toggle="modal" data-target="#helpModal">
+          <i class="bi bi-info-circle"></i> Help
+        </button>
+
+        <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="helpModalLabel">Help Section</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Thank you for using our app! Feel free to reach out to any of our team member 🌼
+                <br />
+                Qiming Chen 📧:qimingchen@umass.edu
+                <br />
+                Jiafeng Li 📧:jiafeng@umass.edu
+                <br />
+                Yongchang Cheng 📧:yongchangchen@umass.edu
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-success" id=signout data-toggle="modal" data-target="#signOutModal">
+          <i class="bi bi-box-arrow-right"></i> Sign Out
+        </button>
+
+        <div class="modal fade" id="signOutModal" tabindex="-1" role="dialog" aria-labelledby="signOutModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="signOutModalLabel">Sign out</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Are you sure you wanto to sign out?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-warning">Sign out</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br /><br />
+    <div class = "row">
+      <div class="col-sm"></div>
+      <img class="rounded-circle mx-auto d-block" src="../images/account_circle.png" width="160" height="160" alt="">
+      <div class="col-sm"><h1>Store Name</h1>
+        <span class="fa fa-star star"></span>
+        <span class="fa fa-star star"></span>
+        <span class="fa fa-star star"></span>
+        <span class="fa fa-star star"></span>
+        <span class="fa fa-star"></span>
+        <div class="card">
+          <div class="card-body-store"></div>
+        </div>
+      </div>
+      <div class="col-sm"></div>
+    </div>
+    <br /><br />
+    <div class = "row">
+      <div class="col-sm"></div>
+      <img class="img-rounded mx-auto d-block" src="../images/default-image.png" width="200" height="160" alt="">
+      <div class="col-sm"><a href=""><h3>Product Name</h3></a>
+        <div class="card">
+          <div class="card-body"></div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <br /><br /><br />
+        <button type="button" class="btn btn-outline-light"><img class="img-rounded" src="../images/add_shopping_cart_48dp.png" width="50" height="50" alt="">add to cart</button>
+      </div>
+    </div>
+    <br /><br />
+    <div class = "row">
+      <div class="col-sm"></div>
+      <img class="img-rounded mx-auto d-block" src="../images/default-image.png" width="200" height="160" alt="">
+      <div class="col-sm"><a href=""><h3>Product Name</h3></a>
+        <div class="card">
+          <div class="card-body"></div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <br /><br /><br />
+        <button type="button" class="btn btn-outline-light"><img class="img-rounded" src="../images/add_shopping_cart_48dp.png" width="50" height="50" alt="">add to cart</button>
+      </div>
+    </div>
+    <br /><br />
+    <div class = "row">
+      <div class="col-sm"></div>
+      <img class="img-rounded mx-auto d-block" src="../images/default-image.png" width="200" height="160" alt="">
+      <div class="col-sm"><a href=""><h3>Product Name</h3></a>
+        <div class="card">
+          <div class="card-body"></div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <br /><br /><br />
+        <button type="button" class="btn btn-outline-light"><img class="img-rounded" src="../images/add_shopping_cart_48dp.png" width="50" height="50" alt="">add to cart</button>
+      </div>
+    </div>
+    <br /><br />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="vendor.js"></script>
+  </body>
+</html>
