@@ -1,5 +1,3 @@
-
 document.querySelector('.img-btn').addEventListener('click', function () {
-    document.querySelector('.login_form').classList.toggle('s-signup')
-}
-);
+    document.querySelector('.container').classList.toggle('s-signup');
+});
