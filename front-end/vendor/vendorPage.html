@@ -49,15 +49,83 @@
           </div>
         </div>
 
-        <button type="button" class="btn btn-success" id="account">
+        <button type="button" class="btn btn-success" id="account" data-toggle="modal" data-target="#accountModal">
           <i class="bi bi-person"></i> Account
         </button>
-        <button type="button" class="btn btn-success" id="help">
+
+        <div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="accountModalLabel">Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Address: XXXXXXXXXXXXX
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Edit Account</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-success" id="help" data-toggle="modal" data-target="#helpModal">
           <i class="bi bi-info-circle"></i> Help
         </button>
-        <button type="button" class="btn btn-success" id=signout>
+
+        <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="helpModalLabel">Help Section</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Thank you for using our app! Feel free to reach out to any of our team member 🌼
+                <br />
+                Qiming Chen 📧:qimingchen@umass.edu
+                <br />
+                Jiafeng Li 📧:jiafeng@umass.edu
+                <br />
+                Yongchang Cheng 📧:yongchangchen@umass.edu
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Edit Account</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-success" id=signout data-toggle="modal" data-target="#signOutModal">
           <i class="bi bi-box-arrow-right"></i> Sign Out
         </button>
+
+        <div class="modal fade" id="signOutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="signOutModalLabel">Sign out</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Are you sure you wanto to sign out?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-warning">Sign out</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <br /><br />
