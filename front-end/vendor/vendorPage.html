@@ -18,11 +18,39 @@
       </div>
       <div class="col-sm-7"></div>
       <div class="col-sm-4">
+        <button type="button" class="btn btn-success" id="add" data-toggle="modal" data-target="#addModal">
+          <i class="bi bi-plus"></i> Add
+        </button>
+
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addModalTitle">Add a new product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <label for="body">Please add the description for your product: </label>
+                <textarea class="form-control" id="addProductDescription" rows="5"></textarea>
+                <form>
+                  <div class="form-group">
+                    <label for="productImageUpload">Please upload an image of your product: </label>
+                    <input type="file" class="form-control-file" id="productImage">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <button type="button" class="btn btn-success" id="account">
           <i class="bi bi-person"></i> Account
-        </button>
-        <button type="button" class="btn btn-success" id="add">
-          <i class="bi bi-plus"></i> Add
         </button>
         <button type="button" class="btn btn-success" id="help">
           <i class="bi bi-info-circle"></i> Help
