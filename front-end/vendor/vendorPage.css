@@ -23,3 +23,11 @@ col-sm{
     height: 80px;
     width: 200px;
 }
+
+.navbar-brand{
+    color: white;
+}
+
+.btn btn-success{
+    font-size: 30px;
+}
