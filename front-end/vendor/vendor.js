@@ -3,7 +3,7 @@ function addToCart(){
 }
 
 function account(){
-
+    
 }
 
 function addProduct(){
