@@ -1,0 +1,27 @@
+{
+  "name": "cs326-final-team-beta",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jiafeng-Li95/cs326-final-team-beta.git"
+  },
+  "author": "Qiming Chen, Jiafeng Li, Yongchang Cheng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jiafeng-Li95/cs326-final-team-beta/issues"
+  },
+  "homepage": "https://github.com/Jiafeng-Li95/cs326-final-team-beta#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
+}
