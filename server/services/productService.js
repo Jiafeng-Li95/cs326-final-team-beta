@@ -25,7 +25,7 @@ function getAllProductsByVendor(vendorId) {
 console.log(products);
 function getProductById(productId) {
   let product = products.filter((product) => product.id === productId);
-  if (product.length() > 0) {
+  if (product.length > 0) {
     return product;
   } else {
     return null;
@@ -63,7 +63,17 @@ function deleteProductById(id) {
 }
 
 function updateProductById(product) {
-  //get the user Id =
+  let flag = false;
+  //get the product Id
+  let id = product.id;
+  products.forEach((p) => {
+    if (p.id === id) {
+      p = product;
+      flag = true;
+    }
+  });
+
+  return flag;
 }
 
 module.exports = {

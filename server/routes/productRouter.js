@@ -39,7 +39,13 @@ productRouter.delete("/:productId", function (req, res) {
 });
 
 //update product to db
-productRouter.put("/", function (req, res) {});
+productRouter.put("/", function (req, res) {
+  let flag = productService.updateProductById(req.body);
+
+  flag
+    ? res.status(200).json({ message: "product updated" })
+    : res.status(409).json({ message: "product does not exists" });
+});
 
 //end of file
 module.exports = productRouter;
