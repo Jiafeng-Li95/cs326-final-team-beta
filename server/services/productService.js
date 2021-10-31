@@ -21,4 +21,49 @@ function getAllProductsByVendor(vendorId) {
   return products.filter((product) => product.userId === vendorId);
 }
 
-module.exports = { getAllProductsByVendor };
+//this console is for knowing the data at runtime, then we can use it for testing the endpoint
+console.log(products);
+function getProductById(productId) {
+  let product = products.filter((product) => product.id === productId);
+  if (product.length() > 0) {
+    return product;
+  } else {
+    return null;
+  }
+}
+
+function createProduct(product) {
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].id === product.id) {
+      return false;
+    }
+  }
+  products.push(product);
+  return true;
+}
+
+function deleteProductById(id) {
+  //check if product in the database
+  let flag = true;
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].id !== product.id) {
+      flag = false;
+    }
+  }
+
+  //if in the database, filter out the given id
+  if (flag) {
+    products = products.filter((product) => {
+      return product.id !== id;
+    });
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function updateProductById(product) {
+  //get the user Id =
+}
+
+module.exports = { getAllProductsByVendor, getProductById, createProduct };

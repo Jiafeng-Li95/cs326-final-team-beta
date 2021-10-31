@@ -5,12 +5,13 @@ const authRouter = require("./routes/authRouter");
 const productRouter = require("./routes/productRouter");
 const vendorRouter = require("./routes/vendorRouter");
 
+//need to place before the routers
+app.use(express.json());
+
 //specify the route
 app.use("/auth", authRouter);
 app.use("/product", productRouter);
 app.use("/vendor", vendorRouter);
-
-app.use(express.json());
 
 //server front-end as static page
 app.use("/", express.static("public"));
