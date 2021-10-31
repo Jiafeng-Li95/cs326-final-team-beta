@@ -16,9 +16,4 @@ app.use("/vendor", vendorRouter);
 //server front-end as static page
 app.use("/", express.static("public"));
 
-//welcome page
-app.get("/", function (req, res) {
-  res.redirect("/login/login.html");
-});
-
 app.listen(3000);
