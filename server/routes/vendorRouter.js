@@ -6,4 +6,4 @@ vendorRouter.get("/", function (req, res) {
 });
 
 //end of file
-vendorRouter.module.exports = vendorRouter;
+module.exports = vendorRouter;
