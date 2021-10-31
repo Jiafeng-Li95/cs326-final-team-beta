@@ -44,10 +44,10 @@ function createProduct(product) {
 
 function deleteProductById(id) {
   //check if product in the database
-  let flag = true;
+  let flag = false;
   for (let i = 0; i < products.length; i++) {
-    if (products[i].id !== product.id) {
-      flag = false;
+    if (products[i].id === id) {
+      flag = true;
     }
   }
 
@@ -66,4 +66,10 @@ function updateProductById(product) {
   //get the user Id =
 }
 
-module.exports = { getAllProductsByVendor, getProductById, createProduct };
+module.exports = {
+  getAllProductsByVendor,
+  getProductById,
+  createProduct,
+  deleteProductById,
+  updateProductById,
+};

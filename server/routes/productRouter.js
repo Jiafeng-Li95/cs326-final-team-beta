@@ -30,7 +30,13 @@ productRouter.post("/", function (req, res) {
 });
 
 //delete product from db
-productRouter.delete("/:productId", function (req, res) {});
+productRouter.delete("/:productId", function (req, res) {
+  let flag = productService.deleteProductById(parseInt(req.params.productId));
+
+  flag
+    ? res.status(200).json({ message: "product deleted" })
+    : res.status(409).json({ message: "product does not exists" });
+});
 
 //update product to db
 productRouter.put("/", function (req, res) {});
