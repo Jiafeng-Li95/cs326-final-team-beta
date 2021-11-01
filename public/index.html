@@ -17,15 +17,15 @@
         <div class="form sign-in">
             <h2>Welcome, Homie</h2>
             <label>
-                <span>Email Address</span>
-                <input type="email" />
+                <span>Username</span>
+                <input type="text" id="username-signin" />
             </label>
             <label>
                 <span>Password</span>
-                <input type="password" />
+                <input type="password" id="password-signin" />
             </label>
             <p class="forgot-pass">Forgot password?</p>
-            <button type="button" class="submit">Sign In</button>
+            <button type="button" class="submit" id="sign-in">Sign In</button>
             <p class="footer-login">-Create by cs326-final-team-beta-</p>
         </div>
         <div class="sub-container">
@@ -46,22 +46,34 @@
             <div class="form sign-up">
                 <h2>Sign Up Here, Homie</h2>
                 <label>
-                    <span>Name</span>
-                    <input type="text" />
-                </label>
-                <label>
-                    <span>Email</span>
-                    <input type="email" />
+                    <span>UserName</span>
+                    <input type="text" id="username-signup" />
                 </label>
                 <label>
                     <span>Password</span>
-                    <input type="password" />
+                    <input type="password" id="password-signup" />
                 </label>
                 <label>
-                    <span>Confirm Password</span>
-                    <input type="password">
+                    <span>Name</span>
+                    <input type="text" id="name-signup" />
                 </label>
-                <button type="button" class="submit">Sign Up</button>
+                <label>
+                    <span>Description</span>
+                    <input type="text" id="description-signup">
+                </label>
+                <label>
+                    <span>Location</span>
+                    <input type="text" id="location-signup" />
+                </label>
+                <label>
+                    <span>PhoneNumber</span>
+                    <input type="text" id="phone-number-signup" />
+                </label>
+                <div class="IsVendor-label">
+                    <span><input type="checkbox" id="checkbox-signup" value="yes"></span>
+                    <label>IS VENDOR</label>
+                </div>
+                <button type="button" class="submit" id="sign-up">Sign Up</button>
             </div>
 
         </div>

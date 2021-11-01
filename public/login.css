@@ -1,6 +1,4 @@
-*,
-*:before,
-*:after {
+*, *:before, *:after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -8,7 +6,7 @@
 
 body {
   font-family: Comic Sans MS, Comic Sans, cursive;
-  background-image: url(images/login-bg.jpeg);
+  /* background-image: url(images/login-bg.jpeg); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -19,8 +17,7 @@ body {
   align-items: center;
 }
 
-input,
-button {
+input, button {
   border: none;
   outline: none;
   background: none;
@@ -218,10 +215,17 @@ button {
   transform: translateY(72px);
 }
 
-label {
+.sign-in label {
   display: block;
   width: 260px;
   margin: 25px auto 0;
+  text-align: center;
+}
+
+label {
+  display: block;
+  width: 260px;
+  margin: auto auto;
   text-align: center;
 }
 
@@ -248,7 +252,7 @@ input {
 }
 
 .submit {
-  margin-top: 40px;
+  margin-top: 5px;
   margin-bottom: 20px;
   font-family: Comic Sans MS, Comic Sans, cursive;
   background: -webkit-linear-gradient(left, #419169, #41a370a2);
@@ -285,4 +289,31 @@ input {
 
 .container.s-signup .sign-up {
   transform: translate3d(0, 0, 0);
+}
+
+.IsVendor-label {
+  display: table;
+  width: 20%;
+  margin-top: 0.2em;
+  margin-left: 40%;
+  margin-right: 50%;
+}
+
+.IsVendor-label label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #5b697ec7;
+  text-transform: uppercase;
+  display: table-cell;
+  width: 1px;
+  white-space: nowrap;
+}
+
+.IsVendor-label span {
+  display: table-cell;
+  padding: 0 4px 0 6px;
+}
+
+.IsVendor-label input {
+  width: 100%
 }
