@@ -33,6 +33,21 @@ h2 {
   font-family: Comic Sans MS, Comic Sans, cursive;
 }
 
+.whole {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.header {
+  margin-bottom: 3em;
+}
+
+.navbar a {
+  color: #466d1d !important;
+}
+
 .container label span {
   font-size: 13px;
   font-weight: 600;
