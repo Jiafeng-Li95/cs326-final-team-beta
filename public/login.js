@@ -19,12 +19,13 @@ async function sign_in() {
         body: JSON.stringify(data)
     });
 
-    let nextData = await response.json();
+    let nextData = await response.status;
 
-    if (nextData) {
+    if (nextData === 200) {
         window.location.href = "http://localhost:3000/home/home.html";
     }
     else {
+        alert("Username or password is incorrect");
         window.location.href = "http://localhost:3000/";
     }
 }
@@ -51,11 +52,15 @@ async function sign_up() {
         body: JSON.stringify(data)
     });
 
-    let nextData = await response.json();
+    let nextData = await response.status;
 
-    console.log(nextData);
+    if (nextData === 200) {
+        window.location.href = "http://localhost:3000/";
+    }
+    else {
+        alert("Account exists already");
+    }
 
-    window.location.href = "http://localhost:3000/";
 }
 
 

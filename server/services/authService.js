@@ -1,7 +1,9 @@
 //put this at end of the this file
 //remember add the function inside this {}
 
-function checkNameExist(userInfo, username) {
+const userInfo = [];
+
+function checkNameExist(username) {
     let checkNameExist = false;
     userInfo.forEach(e => {
         checkNameExist = e.username === username ? true : false;
@@ -10,7 +12,7 @@ function checkNameExist(userInfo, username) {
     else return false;
 }
 
-function checkLoginExist(userInfo, password, username) {
+function checkLoginExist(password, username) {
     let checkPassExist = false;
     let checkNameExist = false;
     userInfo.every(e => {
@@ -23,7 +25,20 @@ function checkLoginExist(userInfo, password, username) {
     else return false;
 }
 
+function pushUserInfo(username, password, name, description, location, phonenumber, isVendor) {
+    userInfo.push({
+        username: username,
+        password: password,
+        name: name,
+        description: description,
+        location: location,
+        phonenumber: phonenumber,
+        isVendor: isVendor
+    });
+}
+
 module.exports = {
     checkNameExist,
-    checkLoginExist
+    checkLoginExist,
+    pushUserInfo
 };

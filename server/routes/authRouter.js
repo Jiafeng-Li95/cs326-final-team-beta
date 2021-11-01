@@ -3,35 +3,25 @@ const authRouter = express.Router();
 const authService = require("../services/authService");
 
 
-const userInfo = [];
+authRouter.post("/login", async (req, res) => {
+  let username = req.body.username;
+  let password = req.body.password;
 
-authRouter.post("/login", function (req, res) {
-  var username = req.body.username;
-  var password = req.body.password;
-
-  if (authService.checkLoginExist(userInfo, password, username)) {
-    res.send(true);
-  } else {
-    res.send(false);
-  }
-
+  authService.checkLoginExist(password, username)
+    ? res.status(200).json(true)
+    : res.status(401).json({ message: "Failed login has happened" });
 });
 
 authRouter.post("/signup", async (req, res) => {
-  if (authService.checkNameExist(userInfo, req.body.username)) {
-    res.send(false);
+  let username = req.body.username;
+
+  if (authService.checkNameExist(username)) {
+    return res.status(401).json({ message: "Unauthorized client error statu" });
   }
   else {
-    userInfo.push({
-      username: req.body.username,
-      password: req.body.password,
-      name: req.body.name,
-      description: req.body.description,
-      location: req.body.location,
-      phonenumber: req.body.phonenumber,
-      isVendor: req.body.isVendor
-    })
-    res.send(true);
+    authService.pushUserInfo(req.body.username, req.body.password, req.body.name,
+      req.body.description, req.body.location, req.body.phonenumber, req.body.isVendor);
+    return res.status(200).json(true);
   }
 });
 
