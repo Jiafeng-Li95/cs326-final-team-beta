@@ -19,6 +19,7 @@ function getAllVendor() {
   return vendors;
 }
 
+//get vendor by id
 function getVendorById(id) {
   let vendor = vendors.filter((vendor) => vendor.userId === id);
 
@@ -29,4 +30,17 @@ function getVendorById(id) {
   }
 }
 
-module.exports = { getAllVendor, getVendorById };
+//update vendor data
+function updateVendorById(vendor) {
+  let flag = false;
+  vendors.forEach((v, index) => {
+    if (v.userId === vendor.userId) {
+      flag = true;
+      vendors[index] = vendor;
+    }
+  });
+
+  return flag;
+}
+
+module.exports = { getAllVendor, getVendorById, updateVendorById };
