@@ -6,7 +6,7 @@ const productService = require("../services/productService");
 productRouter.get("/all/:vendorId", function (req, res) {
   let vendorId = parseInt(req.params.vendorId);
   let products = productService.getAllProductsByVendor(vendorId);
-  return products
+  products
     ? res.status(200).json(products)
     : res.status(404).json({ message: "vendor not found" });
 });
@@ -15,7 +15,7 @@ productRouter.get("/all/:vendorId", function (req, res) {
 productRouter.get("/:id", function (req, res) {
   let product = productService.getProductById(parseInt(req.params.id));
 
-  return product
+  product
     ? res.status(200).json(product)
     : res.status(404).json({ message: "product not found" });
 });
