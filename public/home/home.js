@@ -43,7 +43,36 @@ async function getAllVendor() {
   });
 }
 
-window.addEventListener("load", getAllVendor());
+//fetch user details
+async function getVendorDetails() {
+  let url = new URL(window.location);
+  let id = url.searchParams.get("userId");
+
+  response = await fetch("http://localhost:3000/vendor/" + id, {
+    method: "GET",
+  });
+
+  let vendor = await response.json();
+
+  //update to account window
+  document.getElementById("yardName").value = vendor[0].name;
+  document.getElementById("description").value = vendor[0].description;
+  document.getElementById("location").value = vendor[0].location;
+  document.getElementById("phoneNumber").value = vendor[0].phoneNumber;
+}
+
+//edit Details
+
+//sign out
+function signOut() {
+  //remove token from localstorage
+  //redirect to login page
+  window.location.replace("/");
+}
+
+window.addEventListener("load", getAllVendor);
+//load account details
+getVendorDetails();
 
 //search bar functionality
 document.getElementById("searchBar").addEventListener("keyup", (e) => {
@@ -57,13 +86,5 @@ document.getElementById("searchBar").addEventListener("keyup", (e) => {
     }
   }
 });
-
-//sign out
-
-function signOut() {
-  //remove token from localstorage
-  //redirect to login page
-  window.location.replace("/");
-}
 
 document.getElementById("signout").addEventListener("click", signOut);

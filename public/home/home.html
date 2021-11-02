@@ -24,7 +24,7 @@
                   <p class=" lead">Yardology</p>
                 </a>
                 <div class=' fade show  menu-options'>
-                    <button type="button" class="btn btn-lg btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#account-window"><i class="bi bi-person"></i>Account</button>
+                    <button type="button" class="btn btn-lg btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#account-window" id="show-account"><i class="bi bi-person"></i>Account</button>
                     <!-- Button trigger modal -->
         
                     <!-- Modal for Account window  -->
@@ -33,10 +33,26 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Account Details</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Name: Qiming Chen Address: 222 Amherst Rd
+                                    
+                                        <div class="mb-3">
+                                          <label for="yardName" class="form-label">Yard Name</label>
+                                          <input type="text" class="form-control" id="yardName">
+                                          </div>
+                                        <div class="mb-3">
+                                          <label for="description" class="form-label">Description</label>
+                                          <input type="text" class="form-control" id="description">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="location" class="form-label">Location</label>
+                                            <input type="text" class="form-control" id="location">
+                                          </div>
+                                          <div class="mb-3">
+                                            <label for="phoneNumber" class="form-label">PhoneNumber</label>
+                                            <input type="text" class="form-control" id="phoneNumber">
+                                          </div>
+                                        
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary">Edit Account</button>
