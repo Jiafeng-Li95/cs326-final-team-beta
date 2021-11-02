@@ -47,6 +47,15 @@ button:hover {
   border-right-width: 5px !important;
 }
 
-.card-body {
-  background-color: #f8f9fa;
+.card-header:hover,
+.card-header:focus {
+  background-color: #dbdcdd;
+}
+
+.card-header:focus {
+  background-color: black !important;
+}
+
+a {
+  text-decoration: none !important;
 }
