@@ -34,7 +34,7 @@ function getVendorById(id) {
 function updateVendorById(vendor) {
   let flag = false;
   vendors.forEach((v, index) => {
-    if (v.userId === vendor.userId) {
+    if (v.userId === parseInt(vendor.userId)) {
       flag = true;
       vendors[index] = vendor;
     }

@@ -62,6 +62,37 @@ async function getVendorDetails() {
 }
 
 //edit Details
+async function editAccount() {
+  //get vendor detail
+  let vendor = {};
+
+  //update to account window
+  vendor.name = document.getElementById("yardName").value;
+  vendor.description = document.getElementById("description").value;
+  vendor.location = document.getElementById("location").value;
+  vendor.phoneNumber = document.getElementById("phoneNumber").value;
+
+  //update the user detail to the server
+  let url = new URL(window.location);
+  let id = url.searchParams.get("userId");
+  vendor.userId = parseInt(id);
+  console.log(vendor);
+  let response = await fetch("http://localhost:3000/vendor/", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(vendor),
+  });
+
+  let flag = response.status;
+
+  if (flag) {
+    document.getElementById("editAccount")["data-content"] = "success edited";
+  } else {
+    document.getElementById("editAccount")["data-content"] = "failed edit";
+  }
+}
 
 //sign out
 function signOut() {
@@ -88,3 +119,5 @@ document.getElementById("searchBar").addEventListener("keyup", (e) => {
 });
 
 document.getElementById("signout").addEventListener("click", signOut);
+
+document.getElementById("editAccount").addEventListener("click", editAccount);
