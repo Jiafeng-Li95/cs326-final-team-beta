@@ -57,3 +57,13 @@ document.getElementById("searchBar").addEventListener("keyup", (e) => {
     }
   }
 });
+
+//sign out
+
+function signOut() {
+  //remove token from localstorage
+  //redirect to login page
+  window.location.replace("/");
+}
+
+document.getElementById("signout").addEventListener("click", signOut);
