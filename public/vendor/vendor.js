@@ -95,7 +95,7 @@ async function addProduct() {
     };
 
     let response = await fetch('/product/admin/:' + String(userid), {
-        method: 'post',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
