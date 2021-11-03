@@ -1,5 +1,5 @@
 async function getAllVendor() {
-  let response = await fetch("http://localhost:3000/vendor/all", {
+  let response = await fetch("/vendor/all", {
     method: "GET",
   });
 
@@ -48,7 +48,7 @@ async function getVendorDetails() {
   let url = new URL(window.location);
   let id = url.searchParams.get("userId");
 
-  response = await fetch("http://localhost:3000/vendor/" + id, {
+  response = await fetch("/vendor/" + id, {
     method: "GET",
   });
 
@@ -77,7 +77,7 @@ async function editAccount() {
   let id = url.searchParams.get("userId");
   vendor.userId = parseInt(id);
   console.log(vendor);
-  let response = await fetch("http://localhost:3000/vendor/", {
+  let response = await fetch("/vendor/", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -89,6 +89,7 @@ async function editAccount() {
 
   if (flag) {
     document.getElementById("editAccount")["data-content"] = "success edited";
+    location.reload();
   } else {
     document.getElementById("editAccount")["data-content"] = "failed edit";
   }

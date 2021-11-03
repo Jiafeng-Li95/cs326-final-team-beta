@@ -7,8 +7,9 @@ authRouter.post("/login", async (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
 
-  authService.checkLoginExist(password, username)
-    ? res.status(200).json(true)
+  let user = authService.checkLoginExist(password, username);
+
+  user ? res.status(200).json(user)
     : res.status(401).json({ message: "Failed login has happened" });
 });
 

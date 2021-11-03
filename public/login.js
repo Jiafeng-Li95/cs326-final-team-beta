@@ -7,11 +7,12 @@ document.getElementById("sign-in").addEventListener("click", sign_in);
 async function sign_in() {
     let data = {
         username: document.getElementById("username-signin").value,
-        password: document.getElementById("password-signin").value
+        password: parseInt(document.getElementById("password-signin").value)
     };
 
-    let response = await fetch('http://localhost:3000/auth/login', {
-        method: 'post',
+
+    let response = await fetch('/auth/login', {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
@@ -20,13 +21,14 @@ async function sign_in() {
     });
 
     let nextData = await response.status;
+    let user = await response.json();
 
     if (nextData === 200) {
-        window.location.href = "http://localhost:3000/home/home.html";
+        window.location.href = "/home/home.html?userId=" + user.userId;
     }
     else {
         alert("Username or password is incorrect");
-        window.location.href = "http://localhost:3000/";
+        window.location.href = "/";
     }
 }
 
@@ -43,7 +45,7 @@ async function sign_up() {
         isVendor: document.getElementById("checkbox-signup").checked
     };
 
-    let response = await fetch('http://localhost:3000/auth/signup', {
+    let response = await fetch('/auth/signup', {
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
@@ -55,7 +57,7 @@ async function sign_up() {
     let nextData = await response.status;
 
     if (nextData === 200) {
-        window.location.href = "http://localhost:3000/";
+        window.location.href = "/";
     }
     else {
         alert("Account exists already");
