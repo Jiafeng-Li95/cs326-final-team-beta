@@ -1,5 +1,5 @@
 async function getAllVendor() {
-  let response = await fetch("/vendor/all", {
+  let response = await fetch("http://localhost:3000/vendor/all", {
     method: "GET",
   });
 
@@ -48,7 +48,7 @@ async function getVendorDetails() {
   let url = new URL(window.location);
   let id = url.searchParams.get("userId");
 
-  response = await fetch("/vendor/" + id, {
+  response = await fetch("http://localhost:3000/vendor/" + id, {
     method: "GET",
   });
 
@@ -77,7 +77,7 @@ async function editAccount() {
   let id = url.searchParams.get("userId");
   vendor.userId = parseInt(id);
   console.log(vendor);
-  let response = await fetch("/vendor/", {
+  let response = await fetch("http://localhost:3000/vendor/", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -88,11 +88,14 @@ async function editAccount() {
   let flag = response.status;
 
   if (flag) {
-    document.getElementById("editAccount")["data-content"] = "success edited";
-    location.reload();
+    document.getElementById("toastMsg").innerText = "edit account success!";
   } else {
-    document.getElementById("editAccount")["data-content"] = "failed edit";
+    document.getElementById("toastMsg").innerText = "edit account failed!";
   }
+
+  let myAlert = document.getElementById("liveToast"); //select id of toast
+  let toast = new bootstrap.Toast(myAlert); //inizialize it
+  toast.show(); //show it
 }
 
 //sign out

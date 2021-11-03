@@ -54,10 +54,23 @@
                                           </div>
                                         
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="right" data-content="" id="editAccount">
-                                        Edit Account
-                                      </button>
+                                <div class="modal-footer" >
+                                    
+                                    <button type="button" class="btn btn-primary" id="editAccount">Edit Account</button>
+
+                                    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11" >
+                                      <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+                                        <div class="toast-header">
+                                            <i class="bi bi-bookmark-check"></i>  
+                                          <strong class="me-auto">Edit Account</strong>
+                                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                        </div>
+                                        <div class="toast-body" id="toastMsg">
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+
                                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
         
                                 </div>
@@ -128,7 +141,7 @@
     <div id="vendor-list" class="vendor-list container-fluid column flex-column flex-nowrap overflow-auto">
     </div>
 
-
+    
 </body>
 
 </html>
