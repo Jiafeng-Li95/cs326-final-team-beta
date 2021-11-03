@@ -6,22 +6,22 @@ html body{
     background-color: #466d1d;
 }
 
-col-sm{
-    background-color: #466d1d;
-}
-
 .img-rounded{
     cursor: pointer;
+    display: block;
+    width: 310px;
+    height: 250px; 
 }
 
 .card-body{
-    height: 110px;
-    width: 200px;
+    height: 250px;
+    width: 750px;
 }
 
 .card-body-store{
-    height: 80px;
+    height: 100px;
     width: 200px;
+    font-size: 15px;
 }
 
 .navbar-brand{

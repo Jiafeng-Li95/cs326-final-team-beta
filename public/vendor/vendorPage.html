@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="vendorPage.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+    <script src="vendor.js" defer></script>
     <title>Vendor Page</title>
   </head>
   <body>
@@ -32,8 +33,10 @@
                 </button>
               </div>
               <div class="modal-body">
+                Please add the name for your product: 
+                <input class="form-control" id="addProductName"></input>
                 Please add the description for your product: 
-                <textarea class="form-control" id="addProductDescription" rows="5"></textarea>
+                <textarea class="form-control" id="addProductDescription" row = "5"></textarea>
                 <form>
                   <div class="form-group">
                     Please upload an image of your product: 
@@ -43,7 +46,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" id = "saveAddedProduct">Save changes</button>
               </div>
             </div>
           </div>
@@ -119,7 +122,7 @@
                 Are you sure you wanto to sign out?
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-warning">Sign out</button>
+                <button type="button" class="btn btn-warning" id = 'signOut'>Sign out</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
               </div>
             </div>
@@ -128,64 +131,32 @@
       </div>
     </div>
     <br /><br />
-    <div class = "row">
+    <div class = "row" id = "storeArea">
       <div class="col-sm"></div>
-      <img class="rounded-circle mx-auto d-block" src="../images/account_circle.png" width="160" height="160" alt="">
-      <div class="col-sm"><h1>Store Name</h1>
-        <span class="fa fa-star star"></span>
-        <span class="fa fa-star star"></span>
-        <span class="fa fa-star star"></span>
-        <span class="fa fa-star star"></span>
-        <span class="fa fa-star"></span>
+      <img class="rounded-circle mx-auto d-block" id = "avatar" src="../images/account_circle.png" width="160" height="160" alt="">
+      <div class="col-sm"><h1 id = "storeName">Store Name</h1>
         <div class="card">
-          <div class="card-body-store"></div>
+          <div class="card-body-store" id = "storeDescription"></div>
         </div>
       </div>
       <div class="col-sm"></div>
     </div>
     <br /><br />
-    <div class = "row">
-      <div class="col-sm"></div>
-      <img class="img-rounded mx-auto d-block" src="../images/default-image.png" width="200" height="160" alt="">
-      <div class="col-sm"><a href=""><h3>Product Name</h3></a>
-        <div class="card">
-          <div class="card-body"></div>
+    <div class = "product-list" id = "productList">
+      <!-- <div class = "row">
+        <div class = "col-sm-1"></div>
+        <div class = "col-sm-3">
+          <img class="img-rounded" src="../images/default-image.png">
         </div>
-      </div>
-      <div class="col-sm">
-        <br /><br /><br />
-        <button type="button" class="btn btn-outline-light"><img class="img-rounded" src="../images/add_shopping_cart_48dp.png" width="50" height="50" alt="">add to cart</button>
-      </div>
-    </div>
-    <br /><br />
-    <div class = "row">
-      <div class="col-sm"></div>
-      <img class="img-rounded mx-auto d-block" src="../images/default-image.png" width="200" height="160" alt="">
-      <div class="col-sm"><a href=""><h3>Product Name</h3></a>
         <div class="card">
-          <div class="card-body"></div>
+          <div class="card-body" id = "body">
+            <h5 class="card-title" id = "hi">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
         </div>
-      </div>
-      <div class="col-sm">
-        <br /><br /><br />
-        <button type="button" class="btn btn-outline-light"><img class="img-rounded" src="../images/add_shopping_cart_48dp.png" width="50" height="50" alt="">add to cart</button>
-      </div>
+        <div class = "col-sm-1"></div>
+      </div> -->
     </div>
-    <br /><br />
-    <div class = "row">
-      <div class="col-sm"></div>
-      <img class="img-rounded mx-auto d-block" src="../images/default-image.png" width="200" height="160" alt="">
-      <div class="col-sm"><a href=""><h3>Product Name</h3></a>
-        <div class="card">
-          <div class="card-body"></div>
-        </div>
-      </div>
-      <div class="col-sm">
-        <br /><br /><br />
-        <button type="button" class="btn btn-outline-light"><img class="img-rounded" src="../images/add_shopping_cart_48dp.png" width="50" height="50" alt="">add to cart</button>
-      </div>
-    </div>
-    <br /><br />
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
