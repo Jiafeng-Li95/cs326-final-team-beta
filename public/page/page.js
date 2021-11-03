@@ -9,52 +9,31 @@ async function getAllProduct() {
   let products = await response.json();
   const productList = document.getElementById("productList");
   products.forEach((product, index) => {
-    let br = document.createElement("br");
-    productList.appendChild(br);
-
-    let row = document.createElement("div");
-    row.classList.add("row");
-    row.id = product.id;
-
-    let col = document.createElement("div");
-    col.classList.add("col-sm-1");
-    row.appendChild(col);
-
-    let col2 = document.createElement("div");
-    col2.classList.add("col-sm-3");
-    let image = document.createElement("img");
-    image.classList.add("img-rounded");
-    image.src = "../images/default-image.png";
-    image.alt = "An image of the product.";
-    col2.appendChild(image);
-    row.appendChild(col2);
-
     let card = document.createElement("div");
     card.classList.add("card");
+    card.classList.add("d-flex");
+    card.classList.add("w-50");
+    card.classList.add("justify-content-sm-center");
+    card.classList.add("card");
+    card.classList.add("border-success");
+    card.id = "card-container";
 
     let card_body = document.createElement("div");
     card_body.classList.add("card-body");
 
     let title = document.createElement("h5");
-    title.classList.add("card-title");
+    title.classList.add("card-header");
     title.innerText = product.name;
-    title.innerText = "This is a title";
     card_body.appendChild(title);
 
     let description = document.createElement("p");
     description.classList.add("card-text");
     description.innerText = product.description;
-    description.innerText = "Some description";
     card_body.appendChild(description);
 
     card.appendChild(card_body);
-    row.appendChild(card);
 
-    let col4 = document.createElement("div");
-    col4.classList.add("col-sm-1");
-    row.appendChild(col4);
-
-    productList.appendChild(row);
+    productList.appendChild(card);
   });
 }
 
@@ -72,7 +51,9 @@ async function getVendorDetails() {
   let vendor = await response.json();
 
   //update to account window - TODO
-  document.getElementById("storeName").innerText = vendor[0].name;
+  document.getElementById(
+    "storeName"
+  ).innerHTML = `<i class="bi bi-person-circle"></i> ${vendor[0].name}`;
   document.getElementById("storeDescription").innerText =
     "Description: " + vendor[0].description + "\n";
   document.getElementById("storeDescription").innerText +=
@@ -111,6 +92,10 @@ async function addProduct() {
   }
 }
 
+function backHomePage() {
+  history.back();
+}
+
 function signOut() {
   //remove token from localstorage
   //redirect to login page
@@ -124,7 +109,5 @@ function addToCart() {
 let productId = 0;
 window.addEventListener("load", getAllProduct);
 getVendorDetails();
-document
-  .getElementById("saveAddedProduct")
-  .addEventListener("click", addProduct);
-document.getElementById("signOut").addEventListener("click", signOut);
+document.getElementById("signout").addEventListener("click", signOut);
+document.getElementById("backHome").addEventListener("click", backHomePage);
