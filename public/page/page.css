@@ -28,6 +28,13 @@ html body{
     color: white;
 }
 
-.btn btn-success{
-    font-size: 30px;
+.btn-warning{
+    font-size: 20px;
+    border-radius: 4px;
+}
+
+.btn-info{
+    font-size: 18px;
+    margin: auto;
+    border-radius: 4px;
 }
