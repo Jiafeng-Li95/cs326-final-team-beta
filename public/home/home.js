@@ -40,6 +40,9 @@ async function getAllVendor() {
     card_body.appendChild(document.createElement("br"));
     card.appendChild(card_footer);
     vendor_list_div.appendChild(card);
+    card_link_1.addEventListener("click", (e) => {
+      window.location.href = "/page/page.html?userId=" + e.target.id;
+    });
   });
 }
 
