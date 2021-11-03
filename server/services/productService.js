@@ -12,6 +12,40 @@ let products = new Array(15).fill(null).map((product, index) => {
   });
 });
 
+//add few more fake datas here
+products.push(
+  {
+    id: faker.datatype.number(),
+    name: faker.animal.fish(),
+    description: faker.lorem.words(),
+    userId: 1,
+  },
+  {
+    id: faker.datatype.number(),
+    name: faker.animal.fish(),
+    description: faker.lorem.words(),
+    userId: 1,
+  },
+  {
+    id: faker.datatype.number(),
+    name: faker.animal.fish(),
+    description: faker.lorem.words(),
+    userId: 1,
+  },
+  {
+    id: faker.datatype.number(),
+    name: faker.animal.fish(),
+    description: faker.lorem.words(),
+    userId: 1,
+  },
+  {
+    id: faker.datatype.number(),
+    name: faker.animal.fish(),
+    description: faker.lorem.words(),
+    userId: 1,
+  }
+);
+
 /**
  *
  * @param {*} vendorId number
