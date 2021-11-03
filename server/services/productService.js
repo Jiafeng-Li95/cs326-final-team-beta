@@ -56,7 +56,7 @@ function getAllProductsByVendor(vendorId) {
 }
 
 //this console is for knowing the data at runtime, then we can use it for testing the endpoint
-console.log(products);
+
 function getProductById(productId) {
   let product = products.filter((product) => product.id === productId);
   if (product.length > 0) {

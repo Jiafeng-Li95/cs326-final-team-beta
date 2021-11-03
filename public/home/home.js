@@ -88,10 +88,14 @@ async function editAccount() {
   let flag = response.status;
 
   if (flag) {
-    document.getElementById("editAccount")["data-content"] = "success edited";
+    document.getElementById("toastMsg").innerText = "edit account success!";
   } else {
-    document.getElementById("editAccount")["data-content"] = "failed edit";
+    document.getElementById("toastMsg").innerText = "edit account failed!";
   }
+
+  let myAlert = document.getElementById("liveToast"); //select id of toast
+  let toast = new bootstrap.Toast(myAlert); //inizialize it
+  toast.show(); //show it
 }
 
 //sign out
