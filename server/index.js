@@ -20,6 +20,6 @@ app.use("/product", productRouter);
 app.use("/vendor", vendorRouter);
 
 //server front-end as static page
-app.use("/", express.static(path.dirname + "public"));
+app.use("/", express.static("public"));
 
 app.listen(process.env.PORT || 3000);
