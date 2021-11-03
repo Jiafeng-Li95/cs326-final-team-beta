@@ -66,9 +66,9 @@ function updateProductById(product) {
   let flag = false;
   //get the product Id
   let id = product.id;
-  products.forEach((p) => {
+  products.forEach((p, index) => {
     if (p.id === id) {
-      p = product;
+      products[index] = product;
       flag = true;
     }
   });
