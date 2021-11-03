@@ -22,7 +22,12 @@ vendorRouter.get("/:id", (req, res) => {
 //delete vendor by specified id
 //protect by admin
 //will implement when we have authoirzation imp
-//vendor.delete("/:id", (req, res) => {})
+vendorRouter.delete("/:id", (req, res) => {
+  let vendor = vendorService.deleteVendorById(req.body)
+  vendor
+    ? res.status(200).json({ message: "vendor info delete" })
+    : res.status(409).json({ message: "vendor not found" });
+})
 
 //update vendor details
 vendorRouter.put("/", (req, res) => {

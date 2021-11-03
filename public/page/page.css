@@ -39,3 +39,11 @@
 i {
   padding-right: 20px;
 }
+
+.header {
+  margin-bottom: 3em;
+}
+
+.navbar a {
+  color: #466d1d !important;
+}
