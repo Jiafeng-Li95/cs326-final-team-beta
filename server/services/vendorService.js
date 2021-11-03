@@ -28,8 +28,20 @@ function updateVendorById(vendor) {
       vendors[index] = vendor;
     }
   });
-
   return flag;
 }
 
-module.exports = { getAllVendor, getVendorById, updateVendorById };
+// delete vendor data
+function deleteVendorById(vendor) {
+  let flag = false;
+  vendors.forEach((v, index) => {
+    if (v.userId === parseInt(vendor.userId)) {
+      flag = true;
+      console.log(vendor[index]);
+      vendors[index] = {};
+    }
+  });
+  return flag;
+}
+
+module.exports = { getAllVendor, getVendorById, updateVendorById, deleteVendorById };
