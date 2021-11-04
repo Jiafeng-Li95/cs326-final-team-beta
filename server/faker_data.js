@@ -6,7 +6,7 @@ let vendors = new Array(15).fill(null).map((vendor, index) => {
     username: faker.name.firstName(),
     password: faker.datatype.number(),
     name: faker.company.companyName(),
-    description: faker.lorem.paragraphs(),
+    description: faker.lorem.paragraph(),
     location: faker.address.cityName(),
     phoneNumber: faker.phone.phoneNumber(),
     userId: index,

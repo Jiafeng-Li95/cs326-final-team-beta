@@ -22,8 +22,56 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <div class="navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
+
+          
+                 <button type="button" class="btn btn-lg btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#productWindow" id="add-product"><i class="bi bi-plus-circle"></i>Add</button>
+                       
+                    <!-- Modal for Account window  -->
+                    <div class="modal fade" id="productWindow" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Product Details</h5>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                        <div class="mb-3">
+                                          <label for="productName" class="form-label">Product Name</label>
+                                          <input type="text" class="form-control" id="productName">
+                                          </div>
+                                        <div class="mb-3">
+                                          <label for="description" class="form-label">Description</label>
+                                          <input type="text" class="form-control" id="description">
+                                        </div>         
+                                        
+                                </div>
+                                <div class="modal-footer" >
+                                    
+                                    <button type="button" class="btn btn-primary" id="createProduct">Add</button>
+
+                                    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11" >
+                                      <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+                                        <div class="toast-header">
+                                            <i class="bi bi-bookmark-check"></i>  
+                                          <strong class="me-auto">Add</strong>
+                                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                        </div>
+                                        <div class="toast-body" id="toastMsg">
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+        
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+
+
                     <button type="button" class="btn btn-lg btn-outline-secondary" id="backHome"><i
                             class="bi bi-front"></i>Home</button>
 
@@ -94,7 +142,7 @@
         <div class="col-sm">
             <h1 class="d-flex justify-content-sm-center" id="storeName">Store Name</h1>
             <div class="card">
-                <h4 class="d-flex card-body justify-content-sm-center" id="storeDescription"></h4>
+                <h6 class="d-flex card-body justify-content-sm-center" id="storeDescription"></h4>
             </div>
         </div>
         <div class="col-sm"></div>
