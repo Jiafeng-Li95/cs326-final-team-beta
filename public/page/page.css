@@ -47,3 +47,11 @@ i {
 .navbar a {
   color: #466d1d !important;
 }
+
+button:hover {
+  background-color: #466d1d !important;
+}
+
+button {
+  border: none !important;
+}
