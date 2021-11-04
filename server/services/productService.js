@@ -67,11 +67,7 @@ function getProductById(productId) {
 }
 
 function createProduct(product) {
-  for (let i = 0; i < products.length; i++) {
-    if (products[i].id === product.id) {
-      return false;
-    }
-  }
+  product.id = products.length + 1;
   products.push(product);
   return true;
 }

@@ -51,16 +51,17 @@ async function getAllProduct() {
 
     productList.appendChild(card);
 
-    // delet button event addEventListener 
-    document.getElementById("button-delete" + index).addEventListener("click", () => {
-      // remove card container
-      document.getElementById("card-container" + index).remove();
-      // delete product
-      deleteProduct(product);
-    });
+    // delet button event addEventListener
+    document
+      .getElementById("button-delete" + index)
+      .addEventListener("click", () => {
+        // remove card container
+        document.getElementById("card-container" + index).remove();
+        // delete product
+        deleteProduct(product);
+      });
   });
 }
-
 
 async function deleteProduct(product) {
   let response = await fetch("/product/" + product.id, {
@@ -68,6 +69,32 @@ async function deleteProduct(product) {
   });
   let vendor = await response.json();
   console.log(vendor);
+}
+
+async function createProduct() {
+  let name = document.getElementById("productName").value;
+  let description = document.getElementById("description").value;
+  let url = new URL(window.location);
+  let vendorId = url.searchParams.get("userId");
+
+  let product = {
+    name: name,
+    description: description,
+    userId: parseInt(vendorId),
+  };
+
+  let response = await fetch("/product/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(product),
+  });
+
+  if (response.status === 201) {
+    console.log("create successed");
+  }
 }
 
 //fetch user details
@@ -93,36 +120,6 @@ async function getVendorDetails() {
     "Phone Number: " + vendor[0].phoneNumber;
 }
 
-async function addProduct() {
-  let url = new URL(window.location);
-  let userid = url.searchParams.get("userId");
-  userid = parseInt(userid);
-
-  let product = {
-    id: productId,
-    name: document.getElementById("addProductName").value,
-    description: document.getElementById("addProductDescription").value,
-    userId: userid,
-  };
-
-  let response = await fetch("/product", {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify(product),
-  });
-
-  let nextData = await response.status;
-  if (nextData === 200) {
-    productId++;
-    $("#addModal").modal("hide");
-  } else {
-    alert("Fail to add the product.");
-  }
-}
-
 function backHomePage() {
   history.back();
 }
@@ -142,5 +139,6 @@ window.addEventListener("load", getAllProduct);
 getVendorDetails();
 document.getElementById("signout").addEventListener("click", signOut);
 document.getElementById("backHome").addEventListener("click", backHomePage);
-
-
+document
+  .getElementById("createProduct")
+  .addEventListener("click", createProduct);
