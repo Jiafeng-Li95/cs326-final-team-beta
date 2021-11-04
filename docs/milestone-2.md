@@ -1,4 +1,6 @@
-# CS326-TEAM-BETA
+# CS326-TEAM-BETA milestone-2
+
+> Member: Yongchang Cheng, Jiafeng Li, Qiming Chen
 
 ## PART 0 API PLANNING
 
@@ -123,7 +125,9 @@ Once user login, the list of vendors will display in the home page which it all 
 
 When user click `go to vendor page`, it will redirect to the vendor page where the vendor profile and their posting product will display at page. User can also go back to home page at top of menu bar and also able to sign out. Each posting product could be **deleted** by the vendor itself. Vendor themselves can **add** product to their page.
 
-<img src="../../../Library/Application Support/typora-user-images/image-20211103221448445.png" alt="image-20211103221448445" style="zoom:25%;" />
+![image-20211103232157029](https://tva1.sinaimg.cn/large/008i3skNgy1gw2ybmuic1j30ri0imjrx.jpg)
+
+
 
 
 
