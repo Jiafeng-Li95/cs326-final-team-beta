@@ -1,6 +1,8 @@
 # CS326-TEAM-BETA milestone-2
 
 > Member: Yongchang Cheng, Jiafeng Li, Qiming Chen
+>
+> Hosted link: https://yardology.herokuapp.com/
 
 ## PART 0 API PLANNING
 
