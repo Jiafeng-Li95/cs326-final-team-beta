@@ -1,0 +1,49 @@
+.star {
+  color: rgb(255, 238, 0);
+}
+
+.img-rounded {
+  cursor: pointer;
+  display: block;
+  width: 310px;
+  height: 250px;
+}
+
+.navbar-brand {
+  color: white;
+}
+
+.btn-warning {
+  font-size: 20px;
+  border-radius: 4px;
+}
+
+.btn-info {
+  font-size: 18px;
+  margin: auto;
+  border-radius: 4px;
+}
+
+.product-list {
+  height: 700px;
+  overflow: auto;
+}
+
+.d-flex {
+  width: 50% !important;
+  height: 30% !important;
+  margin: auto;
+  margin-top: 30px;
+}
+
+i {
+  padding-right: 20px;
+}
+
+.header {
+  margin-bottom: 3em;
+}
+
+.navbar a {
+  color: #466d1d !important;
+}
