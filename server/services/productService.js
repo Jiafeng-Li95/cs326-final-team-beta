@@ -46,10 +46,21 @@ products.push(
   }
 );
 
+//get the db connection
+const db = require("../db");
+//require the productRepo
+const ProductRepository = require("../model/product");
+
+//init the product repo
+const productRepository = new ProductRepository(db);
+
+//TODO: using database operation to replace the logic
+
 /**
  *
  * @param {*} vendorId number
  * @returns all products by specified vendor
+ * T
  */
 function getAllProductsByVendor(vendorId) {
   return products.filter((product) => product.userId === vendorId);
