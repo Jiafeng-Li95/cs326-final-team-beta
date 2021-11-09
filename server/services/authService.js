@@ -1,25 +1,28 @@
 //put this at end of the this file
 //remember add the function inside this {}
 
-// //get the db connection
-// const db = require("../db");
-// //require the productRepo
-// const UserRepository = require("../model/user");
+//get the db connection
+const db = require("../db");
+//require the productRepo
+const UserRepository = require("../model/user");
 
 // //init the product repo
-// const userRepository = new UserRepository(db);
+const userRepository = new UserRepository(db);
 
 const userInfo = require("../faker_data");
 let userId = 0;
 
-function checkNameExist(username) {
-  let checkNameExist = false;
-  userInfo.forEach((e) => {
-    checkNameExist = e.username === username ? true : false;
-  });
-  if (checkNameExist) return true;
-  else return false;
-}
+// async function checkNameExist(username) {
+//   // let checkNameExist = false;
+//   // console.log(userRepository.findProductsByUsername(username));
+
+//   // userInfo.forEach((e) => {
+//   //   checkNameExist = e.username === username ? true : false;
+//   // });
+//   // if (checkNameExist) return true;
+//   // else return false;
+//   return await userRepository.findProductsByUsername(username);
+// }
 
 function checkLoginExist(password, username) {
   let checkPassExist = false;
@@ -37,7 +40,8 @@ function checkLoginExist(password, username) {
   else return false;
 }
 
-function pushUserInfo(
+// add new user to the database
+async function createUser(
   username,
   password,
   name,
@@ -46,20 +50,23 @@ function pushUserInfo(
   phonenumber,
   isVendor
 ) {
-  userInfo.push({
-    username: username,
-    password: password,
-    name: name,
-    description: description,
-    location: location,
-    phoneNumber: phonenumber,
-    isVendor: isVendor,
-    userId: userInfo.length,
-  });
+  try {
+    await userRepository.addUser(
+      username,
+      password,
+      name,
+      description,
+      location,
+      phonenumber,
+      isVendor
+    );
+  } catch (error) {
+    return false;
+  }
+  return true;
 }
 
 module.exports = {
-  checkNameExist,
   checkLoginExist,
-  pushUserInfo,
+  createUser,
 };
