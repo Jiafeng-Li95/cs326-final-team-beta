@@ -44,10 +44,26 @@ class ProductRepository {
 
   //return all products by speicifed id of user
   async findProductsByUserId(userId) {
-    return await this.db.any(
-      "SELECT * FROM products WHERE userId = ${userId} ",
-      userId
-    );
+    try {
+      return await this.db.any(
+        "SELECT * FROM products WHERE userId = ${userId} ",
+        userId
+      );
+    } catch (err) {
+      return false;
+    }
+  }
+
+  async updateProduct(product) {
+    try {
+      return await this.db.result(
+        "UPDATE product SET name= $1, description = $2 WHERE id = $3",
+        [product.name, product.description, product.id],
+        (r) => r.rowCount
+      );
+    } catch (error) {
+      return false;
+    }
   }
 }
 
