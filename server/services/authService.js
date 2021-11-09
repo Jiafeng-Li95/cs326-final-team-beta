@@ -1,13 +1,13 @@
 //put this at end of the this file
 //remember add the function inside this {}
 
-//get the db connection
-const db = require("../db");
-//require the productRepo
-const UserRepository = require("../model/user");
+// //get the db connection
+// const db = require("../db");
+// //require the productRepo
+// const UserRepository = require("../model/user");
 
-//init the product repo
-const userRepository = new UserRepository(db);
+// //init the product repo
+// const userRepository = new UserRepository(db);
 
 const userInfo = require("../faker_data");
 let userId = 0;

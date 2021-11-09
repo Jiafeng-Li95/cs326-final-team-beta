@@ -5,14 +5,14 @@ const productService = require("../services/productService");
 //get all products by specified vendor
 productRouter.get("/all/:vendorId", function (req, res) {
   let vendorId = parseInt(req.params.vendorId);
-  let products = productService.getAllProductsByVendor(vendorId);
+  //let products = productService.getAllProductsByVendor(vendorId);
   products
     ? res.status(200).json(products)
     : res.status(404).json({ message: "vendor not found" });
 });
 //get product by product id
-productRouter.get("/:id", function (req, res) {
-  let product = productService.getProductById(parseInt(req.params.id));
+productRouter.get("/:id", async function (req, res) {
+  let product = await productService.getProductById(parseInt(req.params.id));
 
   product
     ? res.status(200).json(product)
@@ -21,12 +21,12 @@ productRouter.get("/:id", function (req, res) {
 
 //create product to db
 productRouter.post("/", function (req, res) {
-  let flag = productService.createProduct(req.body);
+  let product = productService.createProduct(req.body);
 
   //databse test point
   //let flag = productRepository.addProduct(req.body);
-  flag
-    ? res.status(201).json({ message: "product created" })
+  product
+    ? res.status(201).json(JSON.stringify(product))
     : res.status(409).json({ message: "product already exists" });
 });
 
