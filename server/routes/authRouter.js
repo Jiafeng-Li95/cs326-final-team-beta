@@ -3,13 +3,26 @@ const authRouter = express.Router();
 const authService = require("../services/authService");
 const bcrypt = require("bcrypt");
 
+//get the db connection
+const db = require("../db");
+//require the productRepo
+const UserRepository = require("../model/user");
+//init the product repo
+const userRepository = new UserRepository(db);
+
 //router for sign in
 authRouter.post("/login", async (req, res) => {
 
   let user = await authService.loginAuth(req.body);
 
-  user ? res.status(200).json({ message: "User logged in successfully" })
-    : res.status(401).json({ message: "Failed login has happened" });
+  const userInfo = await userRepository.getUserInfoByUsername(req.body.username);
+
+  if (user) {
+    res.status(200).json(JSON.stringify(userInfo));
+  } else {
+    res.status(401).json({ message: "Failed login has happened" })
+  }
+
 });
 
 //router for sign up a new user 

@@ -14,13 +14,13 @@ const bcrypt = require("bcrypt");
 //login authentication
 async function loginAuth(body) {
   try {
-    let userInfo = await userRepository.findProductsByUsername(body.username);
+    let userInfo = await userRepository.getUserInfoByUsername(body.username);
     //No username is in database
     if (Object.keys(userInfo).length === 0) {
       return false;
     }
     else {
-      if (bcrypt.compareSync(body.password, userInfo[0].password)) {
+      if (bcrypt.compareSync(body.password, userInfo.password)) {
         return true;
       }
       else {

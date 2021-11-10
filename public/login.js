@@ -5,6 +5,7 @@ document.querySelector('.img-btn').addEventListener('click', function () {
 //Sign in button event listener
 document.getElementById("sign-in").addEventListener("click", sign_in);
 async function sign_in() {
+
     let data = {
         username: document.getElementById("username-signin").value,
         password: document.getElementById("password-signin").value
@@ -20,11 +21,10 @@ async function sign_in() {
         body: JSON.stringify(data)
     });
 
-    let nextData = await response.status;
-    let user = await response.json();
+    const nextData = JSON.parse(await response.json());
 
-    if (nextData === 200) {
-        window.location.href = "/home/home.html?userId=" + user.userId;
+    if (response.status === 200) {
+        window.location.href = "/home/home.html?userId=" + nextData.id;
     }
     else {
         alert("Username or password is incorrect");
