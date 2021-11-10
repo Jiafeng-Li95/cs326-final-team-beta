@@ -45,11 +45,13 @@ class ProductRepository {
   //return all products by speicifed id of user
   async findProductsByUserId(userId) {
     try {
-      return await this.db.any(
-        "SELECT * FROM products WHERE userId = ${userId} ",
+      let products = await this.db.any(
+        "SELECT * FROM product WHERE userId = $1 ",
         userId
       );
+      products.length > 0 ? true : false;
     } catch (err) {
+      console.log(err);
       return false;
     }
   }
