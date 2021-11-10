@@ -46,13 +46,16 @@ class UserRepository {
         );
     }
 
-    //update user information 
-    async updateUserInfo(username) {
-        return await this.db.any(
-            "SELECT * FROM userInfo WHERE username = $1",
-            username
+    //update user information(For vendor)
+    async updateUserInfo(name, description, location, phoneNumber, username) {
+        return await this.db.one(
+            "UPDATE userInfo SET name = $1,description = $2,location = $3, phoneNumber = $4 WHERE username = $5",
+            [name, description, location, phoneNumber, username]
         );
     }
 }
 
 module.exports = UserRepository;
+
+
+//UPDATE userInfo SET name = '$1',description = '$2',location = '$3', phoneNumber = '$4' WHERE username = '123';
