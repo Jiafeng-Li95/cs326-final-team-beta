@@ -1,8 +1,13 @@
 //put this at end of the this file
 //remember add the function inside this {}
-let vendors = require("../faker_data");
-//this for testing purpose
-console.log(vendors);
+
+//get the db connection
+const db = require("../db");
+//require the productRepo
+const UserRepository = require("../model/user");
+
+//init the product repo
+const userRepository = new UserRepository(db);
 
 function getAllVendor() {
   return vendors;
@@ -44,4 +49,9 @@ function deleteVendorById(vendor) {
   return flag;
 }
 
-module.exports = { getAllVendor, getVendorById, updateVendorById, deleteVendorById };
+module.exports = {
+  getAllVendor,
+  getVendorById,
+  updateVendorById,
+  deleteVendorById,
+};

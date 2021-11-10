@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: Comic Sans MS, Comic Sans, cursive;
+  /* font-family: Comic Sans MS, Comic Sans, cursive; */
   /* background-image: url(images/login-bg.jpeg); */
   background-size: cover;
   background-repeat: no-repeat;
@@ -21,7 +21,7 @@ input, button {
   border: none;
   outline: none;
   background: none;
-  font-family: Comic Sans MS, Comic Sans, cursive;
+  /* font-family: Comic Sans MS, Comic Sans, cursive; */
 }
 
 h2 {
@@ -30,7 +30,7 @@ h2 {
   text-align: center;
   font-weight: bold;
   color: rgb(87, 85, 85);
-  font-family: Comic Sans MS, Comic Sans, cursive;
+  /* font-family: Comic Sans MS, Comic Sans, cursive; */
 }
 
 .whole {
@@ -269,7 +269,7 @@ input {
 .submit {
   margin-top: 5px;
   margin-bottom: 20px;
-  font-family: Comic Sans MS, Comic Sans, cursive;
+  /* font-family: Comic Sans MS, Comic Sans, cursive; */
   background: -webkit-linear-gradient(left, #419169, #41a370a2);
   text-transform: uppercase;
 }

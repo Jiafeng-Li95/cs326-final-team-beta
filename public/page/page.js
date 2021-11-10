@@ -93,6 +93,7 @@ async function createProduct() {
   });
 
   if (response.status === 201) {
+    location.reload();
     console.log("create successed");
   }
 }

@@ -3,17 +3,21 @@ const productRouter = express.Router();
 const productService = require("../services/productService");
 
 //get all products by specified vendor
-productRouter.get("/all/:vendorId", function (req, res) {
-  let vendorId = parseInt(req.params.vendorId);
-  let products = productService.getAllProductsByVendor(vendorId);
+//TESTED
+productRouter.get("/all/:vendorId", async function (req, res) {
+  let products = await productService.getAllProductsByVendor(
+    req.params.vendorId
+  );
+
   products
     ? res.status(200).json(products)
     : res.status(404).json({ message: "vendor not found" });
 });
 
 //get product by product id
-productRouter.get("/:id", function (req, res) {
-  let product = productService.getProductById(parseInt(req.params.id));
+//TESTED
+productRouter.get("/:id", async function (req, res) {
+  let product = await productService.getProductById(parseInt(req.params.id));
 
   product
     ? res.status(200).json(product)
@@ -21,17 +25,21 @@ productRouter.get("/:id", function (req, res) {
 });
 
 //create product to db
-productRouter.post("/", function (req, res) {
-  let flag = productService.createProduct(req.body);
+//TESTED
+productRouter.post("/", async function (req, res) {
+  let product = await productService.createProduct(req.body);
 
-  flag
-    ? res.status(201).json({ message: "product created" })
-    : res.status(409).json({ message: "product already exists" });
+  product
+    ? res.status(201).json({ message: "product created successfully" })
+    : res.status(409).json({ message: "product create failed" });
 });
 
 //delete product from db
-productRouter.delete("/:productId", function (req, res) {
-  let flag = productService.deleteProductById(parseInt(req.params.productId));
+//TESTED
+productRouter.delete("/:productId", async function (req, res) {
+  let flag = await productService.deleteProductById(
+    parseInt(req.params.productId)
+  );
 
   flag
     ? res.status(200).json({ message: "product deleted" })
@@ -39,8 +47,8 @@ productRouter.delete("/:productId", function (req, res) {
 });
 
 //update product to db
-productRouter.put("/", function (req, res) {
-  let flag = productService.updateProductById(req.body);
+productRouter.put("/", async function (req, res) {
+  let flag = await productService.updateProduct(req.body);
 
   flag
     ? res.status(200).json({ message: "product updated" })

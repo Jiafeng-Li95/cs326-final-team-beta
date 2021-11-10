@@ -1,6 +1,8 @@
 # CS326-TEAM-BETA milestone-2
 
 > Member: Yongchang Cheng, Jiafeng Li, Qiming Chen
+>
+> Hosted link: https://yardology.herokuapp.com/
 
 ## PART 0 API PLANNING
 
@@ -127,9 +129,15 @@ When user click `go to vendor page`, it will redirect to the vendor page where t
 
 ![image-20211103232157029](https://tva1.sinaimg.cn/large/008i3skNgy1gw2ybmuic1j30ri0imjrx.jpg)
 
+## Contribution
 
+------
 
+Home page javascript and server routing: Qiming Chen
 
+Login page javascript and server routing: Jiafeng Li
+
+Vendor page javascript and server routing: Yongchang Cheng
 
 ## Basic Architecture of our application 
 
