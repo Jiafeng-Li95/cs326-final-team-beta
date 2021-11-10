@@ -5,7 +5,6 @@ document.querySelector('.img-btn').addEventListener('click', function () {
 //Sign in button event listener
 document.getElementById("sign-in").addEventListener("click", sign_in);
 async function sign_in() {
-    console.log("111");
     let data = {
         username: document.getElementById("username-signin").value,
         password: document.getElementById("password-signin").value
@@ -24,8 +23,6 @@ async function sign_in() {
     let nextData = await response.status;
     let user = await response.json();
 
-    console.log("here");
-    console.log(nextData);
     if (nextData === 200) {
         window.location.href = "/home/home.html?userId=" + user.userId;
     }
