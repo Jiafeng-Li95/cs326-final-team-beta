@@ -1,6 +1,7 @@
 const express = require("express");
 const authRouter = express.Router();
 const authService = require("../services/authService");
+const bcrypt = require("bcrypt");
 
 //router for sign in
 authRouter.post("/login", async (req, res) => {

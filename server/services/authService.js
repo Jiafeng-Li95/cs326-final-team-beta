@@ -6,8 +6,10 @@ const db = require("../db");
 //require the productRepo
 const UserRepository = require("../model/user");
 
-// //init the product repo
+//init the product repo
 const userRepository = new UserRepository(db);
+//bcrypt
+const bcrypt = require("bcrypt");
 
 //login authentication
 async function loginAuth(password, username) {
@@ -18,20 +20,26 @@ async function loginAuth(password, username) {
       return false;
     }
     else {
-      if (userInfo[0].password !== password) {
+      if (bcrypt.compareSync(password, userInfo[0].password)) {
+        console.log("if");
+        return true;
+      }
+      else {
+        console.log("else");
         return false;
       }
     }
   } catch (error) {
     return false;
   }
-  return true;
 }
 
 // add new user to the database
 async function createUser(username, password, name, description, location, phonenumber, isVendor) {
   try {
-    await userRepository.addUser(username, password, name, description, location, phonenumber, isVendor);
+    const salt = bcrypt.genSaltSync();
+    const hashedPwd = bcrypt.hashSync(password, salt);
+    await userRepository.addUser(username, hashedPwd, name, description, location, phonenumber, isVendor);
   }
   catch (error) {
     return false;

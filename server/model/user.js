@@ -45,6 +45,14 @@ class UserRepository {
             username
         );
     }
+
+    //update user information 
+    async updateUserInfo(username) {
+        return await this.db.any(
+            "SELECT * FROM userInfo WHERE username = $1",
+            username
+        );
+    }
 }
 
 module.exports = UserRepository;
