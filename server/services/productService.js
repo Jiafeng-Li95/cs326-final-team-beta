@@ -46,30 +46,34 @@ products.push(
   }
 );
 
+//get the db connection
+const db = require("../db");
+//require the productRepo
+const ProductRepository = require("../model/product");
+
+//init the product repo
+const productRepository = new ProductRepository(db);
+
+//TODO: using database operation to replace the logic
+
 /**
  *
  * @param {*} vendorId number
  * @returns all products by specified vendor
+ * T
  */
 function getAllProductsByVendor(vendorId) {
-  return products.filter((product) => product.userId === vendorId);
+  return productRepository.findProductsByUserId(vendorId);
 }
 
-//this console is for knowing the data at runtime, then we can use it for testing the endpoint
-
-function getProductById(productId) {
-  let product = products.filter((product) => product.id === productId);
-  if (product.length > 0) {
-    return product;
-  } else {
-    return null;
-  }
+async function getProductById(productId) {
+  return await productRepository.findProductByProductId(productId);
 }
 
 function createProduct(product) {
-  product.id = products.length + 1;
-  products.push(product);
-  return true;
+  // product.id = products.length + 1;
+  // products.push(product);
+  return productRepository.addProduct(product);
 }
 
 function deleteProductById(id) {

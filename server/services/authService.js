@@ -1,51 +1,53 @@
 //put this at end of the this file
 //remember add the function inside this {}
 
-const userInfo = require("../faker_data");
-let userId = 0;
+//get the db connection
+const db = require("../db");
+//require the productRepo
+const UserRepository = require("../model/user");
 
-function checkNameExist(username) {
-    let checkNameExist = false;
-    userInfo.forEach(e => {
-        checkNameExist = e.username === username ? true : false;
-    })
-    if (checkNameExist) return true;
-    else return false;
-}
+//init the product repo
+const userRepository = new UserRepository(db);
+//bcrypt
+const bcrypt = require("bcrypt");
 
-function checkLoginExist(password, username) {
-    let checkPassExist = false;
-    let checkNameExist = false;
-    userInfo.every(e => {
-        checkPassExist = parseInt(e.password) === parseInt(password) ? true : false;
-        checkNameExist = e.username === username ? true : false;
-        if (checkPassExist && checkNameExist) {
-            userId = e.userId;
-            return false
-        };
+//login authentication
+async function loginAuth(password, username) {
+  try {
+    let userInfo = await userRepository.findProductsByUsername(username);
+    //No username is in database
+    if (Object.keys(userInfo).length === 0) {
+      return false;
+    }
+    else {
+      if (bcrypt.compareSync(password, userInfo[0].password)) {
+        console.log("if");
         return true;
-    })
-    if (checkPassExist && checkNameExist) return { userId: userId };
-    else return false;
+      }
+      else {
+        console.log("else");
+        return false;
+      }
+    }
+  } catch (error) {
+    return false;
+  }
 }
 
-function pushUserInfo(username, password, name, description, location, phonenumber, isVendor) {
-
-    userInfo.push({
-        username: username,
-        password: password,
-        name: name,
-        description: description,
-        location: location,
-        phoneNumber: phonenumber,
-        isVendor: isVendor,
-        userId: userInfo.length
-    });
-
+// add new user to the database
+async function createUser(username, password, name, description, location, phonenumber, isVendor) {
+  try {
+    const salt = bcrypt.genSaltSync();
+    const hashedPwd = bcrypt.hashSync(password, salt);
+    await userRepository.addUser(username, hashedPwd, name, description, location, phonenumber, isVendor);
+  }
+  catch (error) {
+    return false;
+  }
+  return true;
 }
 
 module.exports = {
-    checkNameExist,
-    checkLoginExist,
-    pushUserInfo
+  loginAuth,
+  createUser,
 };
