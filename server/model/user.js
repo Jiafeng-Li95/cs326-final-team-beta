@@ -39,10 +39,17 @@ class UserRepository {
     }
 
     //return user Information by speicifed username
-    async findProductsByUsername(username) {
-        return await this.db.any(
+    async getUserInfoByUsername(username) {
+        return await this.db.one(
             "SELECT * FROM userInfo WHERE username = $1",
             username
+        );
+    }
+
+    //get all user information
+    async getAllUserInfo() {
+        return await this.db.any(
+            "SELECT * FROM userInfo"
         );
     }
 
