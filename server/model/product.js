@@ -20,7 +20,7 @@ class ProductRepository {
 
   async addProduct(product) {
     return await this.db.none(
-      "INSERT INTO product (name, description, userId) VALUES(${userId},${name},${userId})",
+      "INSERT INTO product (name, description, userId) VALUES(${name},${description},${userId})",
       {
         name: product.name,
         description: product.description,
