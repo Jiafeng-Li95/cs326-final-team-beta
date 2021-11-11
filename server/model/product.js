@@ -49,10 +49,9 @@ class ProductRepository {
         "SELECT * FROM product WHERE userId = $1 ",
         userId
       );
-      products.length > 0 ? true : false;
+      return products.length > 0 ? products : null;
     } catch (err) {
-      console.log(err);
-      return false;
+      return null;
     }
   }
 
