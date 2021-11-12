@@ -12,20 +12,18 @@ const userRepository = new UserRepository(db);
 const bcrypt = require("bcrypt");
 
 //login authentication
-async function loginAuth(password, username) {
+async function loginAuth(body) {
   try {
-    let userInfo = await userRepository.findProductsByUsername(username);
+    let userInfo = await userRepository.getUserInfoByUsername(body.username);
     //No username is in database
     if (Object.keys(userInfo).length === 0) {
       return false;
     }
     else {
-      if (bcrypt.compareSync(password, userInfo[0].password)) {
-        console.log("if");
+      if (bcrypt.compareSync(body.password, userInfo.password)) {
         return true;
       }
       else {
-        console.log("else");
         return false;
       }
     }
@@ -35,11 +33,11 @@ async function loginAuth(password, username) {
 }
 
 // add new user to the database
-async function createUser(username, password, name, description, location, phonenumber, isVendor) {
+async function createUser(body) {
   try {
     const salt = bcrypt.genSaltSync();
-    const hashedPwd = bcrypt.hashSync(password, salt);
-    await userRepository.addUser(username, hashedPwd, name, description, location, phonenumber, isVendor);
+    const hashedPwd = bcrypt.hashSync(body.password, salt);
+    await userRepository.addUser(body.username, hashedPwd, body.name, body.description, body.location, body.phonenumber, body.isVendor);
   }
   catch (error) {
     return false;

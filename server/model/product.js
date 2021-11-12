@@ -20,7 +20,7 @@ class ProductRepository {
 
   async addProduct(product) {
     return await this.db.none(
-      "INSERT INTO product (name, description, userId) VALUES(${userId},${name},${userId})",
+      "INSERT INTO product (name, description, userId) VALUES(${name},${description},${userId})",
       {
         name: product.name,
         description: product.description,
@@ -49,10 +49,9 @@ class ProductRepository {
         "SELECT * FROM product WHERE userId = $1 ",
         userId
       );
-      products.length > 0 ? true : false;
+      return products.length > 0 ? products : null;
     } catch (err) {
-      console.log(err);
-      return false;
+      return null;
     }
   }
 
