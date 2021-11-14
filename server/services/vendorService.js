@@ -1,47 +1,50 @@
 //put this at end of the this file
 //remember add the function inside this {}
+<<<<<<< Updated upstream
 let vendors = require("../faker_data");
 //this for testing purpose
 console.log(vendors);
+=======
 
-function getAllVendor() {
-  return vendors;
+//get the db connection
+const db = require("../db");
+const ProductRepository = require("../model/product");
+//require the productRepo
+const UserRepository = require("../model/user");
+
+//init the product repo
+const productRepository = new ProductRepository(db);
+const userRepository = new UserRepository(db);
+>>>>>>> Stashed changes
+
+async function getAllVendor() {
+    return await userRepository.getAllUserInfo();
 }
 
-//get vendor by id
-function getVendorById(id) {
-  let vendor = vendors.filter((vendor) => vendor.userId === id);
-
-  if (vendor.length > 0) {
-    return vendor;
-  } else {
-    return null;
-  }
+//get vendor by name
+async function getVendorByName(name) {
+    return await userRepository.getUserInfoByUsername(name);
 }
 
 //update vendor data
-function updateVendorById(vendor) {
-  let flag = false;
-  vendors.forEach((v, index) => {
-    if (v.userId === parseInt(vendor.userId)) {
-      flag = true;
-      vendors[index] = vendor;
-    }
-  });
-  return flag;
+async function updateVendorById(vendor) {
+    await userRepository.updateUserInfo(vendor.name, vendor.description, vendor.location, 
+      vendor.phoneNumber, vendor.username);
+    return true;
 }
 
 // delete vendor data
-function deleteVendorById(vendor) {
-  let flag = false;
-  vendors.forEach((v, index) => {
-    if (v.userId === parseInt(vendor.userId)) {
-      flag = true;
-      console.log(vendor[index]);
-      vendors[index] = {};
-    }
-  });
-  return flag;
+async function deleteVendorById(vendor) {
+    return await userRepository.deleteVendorById(vendor.id);
 }
 
+<<<<<<< Updated upstream
 module.exports = { getAllVendor, getVendorById, updateVendorById, deleteVendorById };
+=======
+module.exports = {
+  getAllVendor,
+  getVendorByName,
+  updateVendorById,
+  deleteVendorById,
+};
+>>>>>>> Stashed changes
