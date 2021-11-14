@@ -1,5 +1,16 @@
 //put this at end of the this file
 //remember add the function inside this {}
+<<<<<<< HEAD
+=======
+
+//get the db connection
+const db = require("../db");
+//require the productRepo
+const UserRepository = require("../model/user");
+
+//init the product repo
+const userRepository = new UserRepository(db);
+>>>>>>> main
 
 //get the db connection
 const db = require("../db");
@@ -32,7 +43,11 @@ async function deleteVendorById(vendor) {
 
 module.exports = {
   getAllVendor,
+<<<<<<< HEAD
   getVendorByName,
+=======
+  getVendorById,
+>>>>>>> main
   updateVendorById,
   deleteVendorById,
 };

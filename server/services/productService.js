@@ -1,109 +1,51 @@
 //put this at end of the this file
 //remember add the function inside this {}
-let faker = require("faker");
 
-//fake datas
-let products = new Array(15).fill(null).map((product, index) => {
-  return (product = {
-    id: faker.datatype.number(),
-    name: faker.animal.fish(),
-    description: faker.lorem.words(),
-    userId: index,
-  });
-});
+//get the db connection
+const db = require("../db");
+//require the productRepo
+const ProductRepository = require("../model/product");
 
-//add few more fake datas here
-products.push(
-  {
-    id: faker.datatype.number(),
-    name: faker.animal.fish(),
-    description: faker.lorem.words(),
-    userId: 1,
-  },
-  {
-    id: faker.datatype.number(),
-    name: faker.animal.fish(),
-    description: faker.lorem.words(),
-    userId: 1,
-  },
-  {
-    id: faker.datatype.number(),
-    name: faker.animal.fish(),
-    description: faker.lorem.words(),
-    userId: 1,
-  },
-  {
-    id: faker.datatype.number(),
-    name: faker.animal.fish(),
-    description: faker.lorem.words(),
-    userId: 1,
-  },
-  {
-    id: faker.datatype.number(),
-    name: faker.animal.fish(),
-    description: faker.lorem.words(),
-    userId: 1,
-  }
-);
+//init the product repo
+const productRepository = new ProductRepository(db);
 
 /**
  *
  * @param {*} vendorId number
  * @returns all products by specified vendor
+ * T
  */
-function getAllProductsByVendor(vendorId) {
-  return products.filter((product) => product.userId === vendorId);
+async function getAllProductsByVendor(vendorId) {
+  return await productRepository.findProductsByUserId(vendorId);
 }
 
-//this console is for knowing the data at runtime, then we can use it for testing the endpoint
-
-function getProductById(productId) {
-  let product = products.filter((product) => product.id === productId);
-  if (product.length > 0) {
-    return product;
-  } else {
-    return null;
-  }
+/**
+ *
+ * @param {*} productId
+ * @returns the product detail
+ */
+async function getProductById(productId) {
+  return await productRepository.findProductByProductId(productId);
 }
+/**
+ *
+ * @param {*} product
+ * @returns
+ */
+async function createProduct(product) {
+  // product.id = products.length + 1;
+  // products.push(product);
+  await productRepository.addProduct(product);
 
-function createProduct(product) {
-  product.id = products.length + 1;
-  products.push(product);
   return true;
 }
 
-function deleteProductById(id) {
-  //check if product in the database
-  let flag = false;
-  for (let i = 0; i < products.length; i++) {
-    if (products[i].id === id) {
-      flag = true;
-    }
-  }
-
-  //if in the database, filter out the given id
-  if (flag) {
-    products = products.filter((product) => {
-      return product.id !== id;
-    });
-    return true;
-  } else {
-    return false;
-  }
+async function deleteProductById(id) {
+  return await productRepository.removeProduct(id);
 }
 
-function updateProductById(product) {
-  let flag = false;
-  //get the product Id
-  let id = product.id;
-  products.forEach((p, index) => {
-    if (p.id === id) {
-      products[index] = product;
-      flag = true;
-    }
-  });
-
-  return flag;
+async function updateProduct(product) {
+  return await productRepository.updateProduct(product);
 }
 
 module.exports = {
@@ -111,5 +53,5 @@ module.exports = {
   getProductById,
   createProduct,
   deleteProductById,
-  updateProductById,
+  updateProduct,
 };
