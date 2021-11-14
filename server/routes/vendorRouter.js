@@ -3,10 +3,12 @@ const vendorRouter = express.Router();
 const vendorService = require("../services/vendorService");
 
 //get all vendors
-vendorRouter.get("/all", (req, res) => {
-  let vendors = vendorService.getAllVendor();
+vendorRouter.get("/all", async function (req, res){
+  let vendors = await vendorService.getAllVendor();
 
-  vendors ? res.status(200).json(vendors) : res.status(404);
+  vendors
+    ? res.status(200).json(vendors)
+    : res.status(404).json({ message: "Cannot get all vendors" });
 });
 
 //get vendor by specified id
