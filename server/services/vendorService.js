@@ -14,13 +14,14 @@ async function getAllVendor() {
 }
 
 //get vendor by name
-async function getVendorById(id) {
-    return await userRepository.getUserInfoByUsername(id);
+async function getVendorByName(name) {
+    return await userRepository.getUserInfoByUsername(name);
 }
 
 //update vendor data
-async function updateVendor(name, description, location, phoneNumber, username) {
-    await userRepository.updateUserInfo(name, description, location, phoneNumber, username);
+async function updateVendor(vendor) {
+    await userRepository.updateUserInfo(vendor.name, vendor.description, vendor.location, 
+        vendor.phoneNumber, vendor.username);
     return true;
 }
 
@@ -31,7 +32,7 @@ async function deleteVendorById(id) {
 
 module.exports = {
   getAllVendor,
-  getVendorById,
+  getVendorByName,
   updateVendor,
   deleteVendorById,
 };
