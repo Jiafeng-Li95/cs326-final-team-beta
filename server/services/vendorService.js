@@ -9,49 +9,30 @@ const UserRepository = require("../model/user");
 //init the product repo
 const userRepository = new UserRepository(db);
 
-function getAllVendor() {
-  return vendors;
+async function getAllVendor() {
+    return await userRepository.getAllUserInfo();
 }
 
-//get vendor by id
-function getVendorById(id) {
-  let vendor = vendors.filter((vendor) => vendor.userId === id);
-
-  if (vendor.length > 0) {
-    return vendor;
-  } else {
-    return null;
-  }
+//get vendor by name
+async function getVendorById(id) {
+    return await userRepository.getUserInfoById(id);
 }
 
 //update vendor data
-function updateVendorById(vendor) {
-  let flag = false;
-  vendors.forEach((v, index) => {
-    if (v.userId === parseInt(vendor.userId)) {
-      flag = true;
-      vendors[index] = vendor;
-    }
-  });
-  return flag;
+async function updateVendor(vendor) {
+    await userRepository.updateUserInfo(vendor.name, vendor.description, vendor.location, 
+        vendor.phoneNumber, vendor.userId);
+    return true;
 }
 
 // delete vendor data
-function deleteVendorById(vendor) {
-  let flag = false;
-  vendors.forEach((v, index) => {
-    if (v.userId === parseInt(vendor.userId)) {
-      flag = true;
-      console.log(vendor[index]);
-      vendors[index] = {};
-    }
-  });
-  return flag;
+async function deleteVendorById(id) {
+    return await userRepository.deleteVendorById(id);
 }
 
 module.exports = {
   getAllVendor,
   getVendorById,
-  updateVendorById,
+  updateVendor,
   deleteVendorById,
 };

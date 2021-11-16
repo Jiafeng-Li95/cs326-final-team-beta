@@ -3,11 +3,16 @@ async function getAllProduct() {
   let vendorId = url.searchParams.get("userId");
 
   let response = await fetch("/product/all/" + vendorId, {
-    method: "GET",
+    method: "GET"
   });
+
+  if (!response.ok){
+      return;
+  }
 
   let products = await response.json();
   const productList = document.getElementById("productList");
+
   products.forEach((product, index) => {
     let card = document.createElement("div");
     card.classList.add("card");
@@ -103,22 +108,20 @@ async function getVendorDetails() {
   let url = new URL(window.location);
   let id = url.searchParams.get("userId");
 
-  response = await fetch("/vendor/" + id, {
-    method: "GET",
+  let response = await fetch("/vendor/" + id, {
+    method: "GET"
   });
 
   let vendor = await response.json();
 
-  //update to account window - TODO
-  document.getElementById(
-    "storeName"
-  ).innerHTML = `<i class="bi bi-person-circle"></i> ${vendor[0].name}`;
+  //update to account window
+  document.getElementById("storeName").innerHTML = `<i class="bi bi-person-circle"></i> ${vendor.name}`;
   document.getElementById("storeDescription").innerText =
-    "Description: " + vendor[0].description + "\n";
+    "Description: " + vendor.description + "\n";
   document.getElementById("storeDescription").innerText +=
-    "Location: " + vendor[0].location + "\n";
+    "Location: " + vendor.location + "\n";
   document.getElementById("storeDescription").innerText +=
-    "Phone Number: " + vendor[0].phoneNumber;
+    "Phone Number: " + vendor.phonenumber;
 }
 
 function backHomePage() {

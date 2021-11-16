@@ -46,6 +46,14 @@ class UserRepository {
         );
     }
 
+    //return user Information by speicifed id
+    async getUserInfoById(id) {
+        return await this.db.oneOrNone(
+            "SELECT * FROM userInfo WHERE id = $1",
+            id
+        );
+    }
+
     //get all user information
     async getAllUserInfo() {
         return await this.db.any(
@@ -54,10 +62,10 @@ class UserRepository {
     }
 
     //update user information(For vendor)
-    async updateUserInfo(name, description, location, phoneNumber, username) {
-        return await this.db.one(
-            "UPDATE userInfo SET name = $1,description = $2,location = $3, phoneNumber = $4 WHERE username = $5",
-            [name, description, location, phoneNumber, username]
+    async updateUserInfo(name, description, location, phoneNumber, id) {
+        return await this.db.none(
+            "UPDATE userInfo SET name = $1,description = $2,location = $3, phoneNumber = $4 WHERE id = $5",
+            [name, description, location, phoneNumber, id]
         );
     }
 }
