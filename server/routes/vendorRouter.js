@@ -13,7 +13,7 @@ vendorRouter.get("/all", async function (req, res){
 //get vendor by specified id
 vendorRouter.get("/:id", async function (req, res){
   //parse the id
-  let vendor = await vendorService.getVendorById(parseInt(req.params.id));
+  let vendor = await vendorService.getVendorById(req.params.id);
   vendor
     ? res.status(200).json(vendor)
     : res.status(404).json({ message: "vendor not found" });
@@ -30,7 +30,7 @@ vendorRouter.delete("/:id", async function (req, res){
 
 //update vendor details
 vendorRouter.put("/", async function (req, res){
-  let flag = vendorService.updateVendorById(req.body);
+  let flag = vendorService.updateVendor(req.body);
   flag
     ? res.status(200).json({ message: "vendor info updated" })
     : res.status(409).json({ message: "vendor not found" });

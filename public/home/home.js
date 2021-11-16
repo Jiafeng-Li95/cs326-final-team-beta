@@ -51,17 +51,18 @@ async function getVendorDetails() {
   let url = new URL(window.location);
   let id = url.searchParams.get("userId");
 
-  response = await fetch("/vendor/" + id, {
-    method: "GET",
+  let response = await fetch("/vendor/" + id, {
+    method: "GET"
   });
 
   let vendor = await response.json();
+  console.log(JSON.stringify(vendor));
 
   //update to account window
-  document.getElementById("yardName").value = vendor[0].name;
-  document.getElementById("description").value = vendor[0].description;
-  document.getElementById("location").value = vendor[0].location;
-  document.getElementById("phoneNumber").value = vendor[0].phoneNumber;
+  document.getElementById("yardName").value = vendor.name;
+  document.getElementById("description").value = vendor.description;
+  document.getElementById("location").value = vendor.location;
+  document.getElementById("phoneNumber").value = vendor.phonenumber;
 }
 
 //edit Details
@@ -79,7 +80,7 @@ async function editAccount() {
   let url = new URL(window.location);
   let id = url.searchParams.get("userId");
   vendor.userId = parseInt(id);
-  console.log(vendor);
+  //console.log(vendor);
   let response = await fetch("/vendor/", {
     method: "PUT",
     headers: {
