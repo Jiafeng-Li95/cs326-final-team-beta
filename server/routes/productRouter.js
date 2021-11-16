@@ -5,9 +5,7 @@ const productService = require("../services/productService");
 //get all products by specified vendor
 //TESTED
 productRouter.get("/all/:vendorId", async function (req, res) {
-  let products = await productService.getAllProductsByVendor(
-    parseInt(req.params.vendorId)
-  );
+  let products = await productService.getAllProductsByVendor(req.params.vendorId);
   products
     ? res.status(200).json(products)
     : res.status(404).json({ message: "vendor not found" });
