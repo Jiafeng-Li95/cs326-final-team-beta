@@ -20,14 +20,6 @@ async function getAllProductsByUser(savedUserId) {
   return await favoriteRepository.findFavoritesByUserId(savedUserId);
 }
 
-// /**
-//  *
-//  * @param {*} productId
-//  * @returns the product detail
-//  */
-// async function getProductById(productId) {
-//   return await productRepository.findProductByProductId(productId);
-// }
 /**
  *
  * @param {*} productId
@@ -40,14 +32,6 @@ async function addFavoriteProduct(productId, savedUserId) {
 
   return true;
 }
-
-// async function deleteProductById(id) {
-//   return await productRepository.removeProduct(id);
-// }
-
-// async function updateProduct(product) {
-//   return await productRepository.updateProduct(product);
-// }
 
 module.exports = {
   getAllProductsByUser,
