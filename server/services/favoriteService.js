@@ -5,6 +5,7 @@
 const db = require("../db");
 //require the productRepo
 const FavoriteRepository = require("../model/favorite");
+const favoriteRouter = require("../routes/favoriteRouter");
 
 //init the product repo
 const favoriteRepository = new FavoriteRepository(db);
@@ -15,8 +16,8 @@ const favoriteRepository = new FavoriteRepository(db);
  * @returns all saved products by specified user
  * T
  */
-async function getAllProductsByUser(userId) {
-  return await favoriteRepository.findFavoritesById(userId);
+async function getAllProductsByUser(savedUserId) {
+  return await favoriteRepository.findFavoritesByUserId(savedUserId);
 }
 
 // /**
@@ -27,18 +28,18 @@ async function getAllProductsByUser(userId) {
 // async function getProductById(productId) {
 //   return await productRepository.findProductByProductId(productId);
 // }
-// /**
-//  *
-//  * @param {*} product
-//  * @returns
-//  */
-// async function createProduct(product) {
-//   // product.id = products.length + 1;
-//   // products.push(product);
-//   await productRepository.addProduct(product);
+/**
+ *
+ * @param {*} productId
+ * @returns
+ */
+async function addFavoriteProduct(productId, savedUserId) {
+  // product.id = products.length + 1;
+  // products.push(product);
+  await favoriteRepository.addFavorite(productId, savedUserId);
 
-//   return true;
-// }
+  return true;
+}
 
 // async function deleteProductById(id) {
 //   return await productRepository.removeProduct(id);
@@ -50,4 +51,5 @@ async function getAllProductsByUser(userId) {
 
 module.exports = {
   getAllProductsByUser,
+  addFavoriteProduct,
 };

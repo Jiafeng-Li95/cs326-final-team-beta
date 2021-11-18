@@ -8,6 +8,7 @@ class FavoriteRepository {
   async createTable() {
     return await this.db.none(`CREATE TABLE IF NOT EXISTS favorite(
           id serial PRIMARY KEY,
+          savedUserId int,
           productId int,
           FOREIGN KEY(productId) REFERENCES product(id)
       )`);
@@ -17,32 +18,33 @@ class FavoriteRepository {
     return await this.db.none(`DROP TABLE favorite`);
   }
 
-  async addFavorite(product) {
+  async addFavorite(productId, savedUserId) {
     return await this.db.none(
-      "INSERT INTO favorite (productId) VALUES(${productId})",
+      "INSERT INTO favorite (productId,savedUserId) VALUES(${productId},${savedUserId})",
       {
-        productId: product,
+        productId: productId,
+        savedUserId: savedUserId,
       }
     );
   }
 
   //if id is not delete correct using `+id` instead of `id`
-  async removeFavorite(id) {
+  async removeFavorite(productId) {
     return await this.db.result(
       "DELETE FROM favorite WHERE id =$1",
-      id,
+      productId,
       (r) => r.rowCount
     );
   }
 
   //return all products by speicifed id of user
-  async findFavoritesById(userId) {
+  async findFavoritesByUserId(savedUserId) {
     try {
-      let products = await this.db.any(
-        "SELECT * FROM favorite WHERE userId = $1 ",
-        userId
+      let favorites = await this.db.any(
+        "SELECT * FROM favorite,product WHERE favorite.productId = product.id AND savedUserId = $1 ",
+        savedUserId
       );
-      return products.length > 0 ? products : null;
+      return favorites.length > 0 ? favorites : null;
     } catch (err) {
       return null;
     }

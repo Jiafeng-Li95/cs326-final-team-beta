@@ -4,8 +4,10 @@ const favoriteService = require("../services/favoriteService");
 
 //get all saved products by current user
 //TESTED
-favoriteRouter.get("/all/:userId", async function (req, res) {
-  let favorites = await favoriteService.getAllProductsByUser(req.params.userId);
+favoriteRouter.get("/all/:savedUserId", async function (req, res) {
+  let favorites = await favoriteService.getAllProductsByUser(
+    req.params.savedUserId
+  );
   favorites
     ? res.status(200).json(favorites)
     : res.status(404).json({ message: "user not found" });
@@ -20,15 +22,18 @@ favoriteRouter.get("/all/:userId", async function (req, res) {
 //     : res.status(404).json({ message: "product not found" });
 // });
 
-// //create product to db
-// //TESTED
-// productRouter.post("/", async function (req, res) {
-//   let product = await productService.createProduct(req.body);
+//add saved product to favorites table
+//TESTED
+favoriteRouter.post("/", async function (req, res) {
+  let favorites = await favoriteService.addFavoriteProduct(
+    req.body.productId,
+    req.body.savedUserId
+  );
 
-//   product
-//     ? res.status(201).json({ message: "product created successfully" })
-//     : res.status(409).json({ message: "product create failed" });
-// });
+  favorites
+    ? res.status(201).json({ message: "added item successfully" })
+    : res.status(409).json({ message: "add failed" });
+});
 
 // //delete product from db
 // //TESTED
