@@ -125,7 +125,6 @@ async function getVendorDetails() {
 }
 
 async function getPageView(){
-    document.getElementById('pv').innerText = '';
     let url = new URL(window.location);
     let id = url.searchParams.get("userId");
 
@@ -133,10 +132,13 @@ async function getPageView(){
         method: "GET"
     });
     
-    if (response.ok){
-        let record = await response.json();
-        document.getElementById('pv').innerText = "Page View: " + record.numclicked;
-    }
+    let record = await response.json();
+    const storeName = document.getElementById('storeName');
+    const pageview = document.createElement("span");
+    pageview.id = 'pv';
+    let num = record.numclicked + 1;
+    pageview.appendChild(document.createTextNode("Page View: " + num));
+    storeName.appendChild(pageview);
 }
 
 function backHomePage() {
@@ -156,8 +158,7 @@ function addToCart() {
 let productId = 0;
 window.addEventListener("load", getAllProduct);
 getVendorDetails();
+window.addEventListener("load", getPageView);
 document.getElementById("signout").addEventListener("click", signOut);
 document.getElementById("backHome").addEventListener("click", backHomePage);
-document
-  .getElementById("createProduct")
-  .addEventListener("click", createProduct);
+document.getElementById("createProduct").addEventListener("click", createProduct);

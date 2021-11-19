@@ -44,14 +44,11 @@ async function getAllVendor() {
     card_link_1.addEventListener("click", async function (){
         window.location.href = "/page/page.html?userId=" + vendor.id;
 
-        console.log("1");
         let response = await fetch("/pageview/" + vendor.id, {
             method: "GET"
         });
-        let record = await response.json();
-        console.log(JSON.stringify(record));
+
         if (!response.ok){
-            console.log("3");
             let pv = {userid: vendor.id, numclicked: 0};
             await fetch("/pageview/", {
                 method: "POST",
@@ -63,8 +60,7 @@ async function getAllVendor() {
             });
         }
         else{
-            console.log("4");
-            //let record = await response.json();
+            let record = await response.json();
             let pv = {userid: vendor.id, numclicked: record.numclicked + 1};
             await fetch("/pageview/", {
                 method: "PUT",
