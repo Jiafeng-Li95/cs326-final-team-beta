@@ -19,7 +19,7 @@ class ViewRepository {
     //create a new user Information
     async addUser(pv) {
         return await this.db.none(
-            "INSERT INTO userInfo (userid, numclicked) VALUES(${userid},${numclicked})",
+            "INSERT INTO viewinfo (userid, numclicked) VALUES(${userid},${numclicked})",
             {
                 userid: pv.userid,
                 numclicked: pv.numclicked
