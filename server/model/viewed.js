@@ -17,12 +17,12 @@ class ViewRepository {
     }
 
     //create a new user Information
-    async addUser(userid) {
+    async addUser(pv) {
         return await this.db.none(
             "INSERT INTO userInfo (userid, numclicked) VALUES(${userid},${numclicked})",
             {
-                userid: userid,
-                numclicked: 0
+                userid: pv.userid,
+                numclicked: pv.numclicked
             }
         );
     }
@@ -36,10 +36,10 @@ class ViewRepository {
     }
 
     //update user information(For vendor)
-    async updateViewInfo(id) {
+    async updateViewInfo(pv) {
         return await this.db.none(
-            "UPDATE viewinfo SET numclicked = numclicked+1 WHERE userid = $1",
-            id
+            "UPDATE viewinfo SET numclicked = $1 WHERE userid = $2",
+            [pv.numclicked, pv.userid]
         );
     }
 }

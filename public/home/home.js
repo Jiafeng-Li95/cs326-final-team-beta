@@ -50,13 +50,24 @@ async function getAllVendor() {
 
         let record = await response.json();
         if (record.length === 0){
-            await fetch("/pageview/" + vendor.id, {
-                method: "POST"
+            let pv = {userid: vendor.id, numclicked: 0};
+            await fetch("/pageview/", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Accept: "application/json"
+                },
+                body: JSON.stringify(pv)
             });
         }
         else{
-            await fetch("/pageview/" + vendor.id, {
-                method: "PUT"
+            let pv = {userid: vendor.id, numclicked: record.numclicked + 1};
+            await fetch("/pageview/", {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify(pv)
             });
         }
     });

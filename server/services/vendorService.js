@@ -28,7 +28,7 @@ async function getPageViewById(id){
 
 //update page view by id
 async function updatePageViewById(pv, id){
-    await viewRepository.updateViewInfo(pv, id);
+    return await viewRepository.updateViewInfo(pv, id);
 }
 
 //get vendor by name

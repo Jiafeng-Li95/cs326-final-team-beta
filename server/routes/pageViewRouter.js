@@ -11,8 +11,8 @@ pageViewRouter.get("/:id", async function (req, res){
   });
 
 //create new record to db
-pageViewRouter.post("/:id", async function (req, res) {
-    let pv = await vendorService.addPVRecord(req.params.id);
+pageViewRouter.post("/", async function (req, res) {
+    let pv = await vendorService.addPVRecord(req.body);
   
     pv
       ? res.status(201).json({ message: "record created successfully" })
@@ -20,8 +20,8 @@ pageViewRouter.post("/:id", async function (req, res) {
 });
 
 //update current record for a vendor
-pageViewRouter.put("/:id", async function (req, res){
-    let pv = await vendorService.updatePageViewById(req.params.id);
+pageViewRouter.put("/", async function (req, res){
+    let pv = await vendorService.updatePageViewById(req.body);
 
     pv
       ? res.status(201).json({ message: "record update successfully" })
