@@ -124,6 +124,18 @@ async function getVendorDetails() {
     "Phone Number: " + vendor.phonenumber;
 }
 
+async function getPageView(){
+    document.getElementById('pv').innerText = '';
+    let url = new URL(window.location);
+    let id = url.searchParams.get("userId");
+
+    let response = await fetch("/pageview/" + id, {
+      method: "GET"
+    });
+    let record = await response.json();
+    document.getElementById('pv').innerText = "Page View: " + record.numclicked;
+}
+
 function backHomePage() {
   history.back();
 }

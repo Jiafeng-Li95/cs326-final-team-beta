@@ -6,7 +6,7 @@ const vendorService = require("../services/vendorService");
 pageViewRouter.get("/:id", async function (req, res){
     let pv = await vendorService.getVendorById(req.params.id);
     pv
-      ? res.status(200).json(vendor)
+      ? res.status(200).json(pv)
       : res.status(404).json({ message: "vendor not found" });
   });
 
@@ -27,3 +27,5 @@ pageViewRouter.put("/:id", async function (req, res){
       ? res.status(201).json({ message: "record update successfully" })
       : res.status(409).json({ message: "record update failed" });
 });
+
+module.exports = pageViewRouter;

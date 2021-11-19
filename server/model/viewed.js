@@ -30,7 +30,7 @@ class ViewRepository {
     //return user Information by speicifed id
     async getNumClickedById(id) {
         return await this.db.oneOrNone(
-            "SELECT * FROM viewinfo WHERE id = $1",
+            "SELECT * FROM viewinfo WHERE userid = $1",
             id
         );
     }
@@ -38,7 +38,7 @@ class ViewRepository {
     //update user information(For vendor)
     async updateViewInfo(id) {
         return await this.db.none(
-            "UPDATE viewinfo SET numclicked = numclicked+1 WHERE id = $1",
+            "UPDATE viewinfo SET numclicked = numclicked+1 WHERE userid = $1",
             id
         );
     }

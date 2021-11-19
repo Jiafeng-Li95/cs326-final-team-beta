@@ -40,12 +40,14 @@ async function getAllVendor() {
     card_body.appendChild(document.createElement("br"));
     card.appendChild(card_footer);
     vendor_list_div.appendChild(card);
-    card_link_1.addEventListener("click", () => {
+
+    card_link_1.addEventListener("click", async function (){
         window.location.href = "/page/page.html?userId=" + vendor.id;
 
         let response = await fetch("/pageview/" + vendor.id, {
             method: "GET"
         });
+
         let record = await response.json();
         if (record.length === 0){
             await fetch("/pageview/" + vendor.id, {
@@ -71,7 +73,6 @@ async function getVendorDetails() {
   });
 
   let vendor = await response.json();
-  console.log(JSON.stringify(vendor));
 
   //update to account window
   document.getElementById("yardName").value = vendor.name;
