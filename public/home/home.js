@@ -41,9 +41,22 @@ async function getAllVendor() {
     card.appendChild(card_footer);
     vendor_list_div.appendChild(card);
     card_link_1.addEventListener("click", () => {
-      window.location.href = "/page/page.html?userId=" + vendor.id;
+        window.location.href = "/page/page.html?userId=" + vendor.id;
 
-      //let response =  await()
+        let response = await fetch("/pageview/" + vendor.id, {
+            method: "GET"
+        });
+        let record = await response.json();
+        if (record.length === 0){
+            await fetch("/pageview/" + vendor.id, {
+                method: "POST"
+            });
+        }
+        else{
+            await fetch("/pageview/" + vendor.id, {
+                method: "PUT"
+            });
+        }
     });
   });
 }

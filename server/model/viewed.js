@@ -36,10 +36,10 @@ class ViewRepository {
     }
 
     //update user information(For vendor)
-    async updateViewInfo(numclicked, id) {
+    async updateViewInfo(id) {
         return await this.db.none(
-            "UPDATE viewinfo SET numclicked = $1 WHERE id = $2",
-            [numclicked+1, id]
+            "UPDATE viewinfo SET numclicked = numclicked+1 WHERE id = $1",
+            id
         );
     }
 }
