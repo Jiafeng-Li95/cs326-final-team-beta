@@ -48,8 +48,7 @@ async function getAllVendor() {
             method: "GET"
         });
 
-        let record = await response.json();
-        if (record.length === 0){
+        if (!response.ok){
             let pv = {userid: vendor.id, numclicked: 0};
             await fetch("/pageview/", {
                 method: "POST",
@@ -61,6 +60,7 @@ async function getAllVendor() {
             });
         }
         else{
+            let record = await response.json();
             let pv = {userid: vendor.id, numclicked: record.numclicked + 1};
             await fetch("/pageview/", {
                 method: "PUT",
@@ -107,7 +107,6 @@ async function editAccount() {
   let url = new URL(window.location);
   let id = url.searchParams.get("userId");
   vendor.userId = parseInt(id);
-  //console.log(vendor);
   let response = await fetch("/vendor/", {
     method: "PUT",
     headers: {

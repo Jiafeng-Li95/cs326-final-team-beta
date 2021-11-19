@@ -130,10 +130,13 @@ async function getPageView(){
     let id = url.searchParams.get("userId");
 
     let response = await fetch("/pageview/" + id, {
-      method: "GET"
+        method: "GET"
     });
-    let record = await response.json();
-    document.getElementById('pv').innerText = "Page View: " + record.numclicked;
+    
+    if (response.ok){
+        let record = await response.json();
+        document.getElementById('pv').innerText = "Page View: " + record.numclicked;
+    }
 }
 
 function backHomePage() {
