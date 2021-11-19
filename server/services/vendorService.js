@@ -7,28 +7,9 @@ const db = require("../db");
 const UserRepository = require("../model/user");
 const userRepository = new UserRepository(db);
 
-const ViewRepository = require("../model/viewed");
-const viewRepository = new ViewRepository(db);
-
 //get all the vendors
 async function getAllVendor() {
     return await userRepository.getAllUserInfo();
-}
-
-//add new page view record for a new vendor
-async function addPVRecord(id){
-    await viewRepository.addUser(id);
-    return true;
-}
-
-//get page view by id
-async function getPageViewById(id){
-    return await viewRepository.getNumClickedById(id);
-}
-
-//update page view by id
-async function updatePageViewById(pv, id){
-    return await viewRepository.updateViewInfo(pv, id);
 }
 
 //get vendor by name
@@ -52,8 +33,5 @@ module.exports = {
   getAllVendor,
   getVendorById,
   updateVendor,
-  deleteVendorById,
-  getPageViewById,
-  updatePageViewById,
-  addPVRecord
+  deleteVendorById
 };
