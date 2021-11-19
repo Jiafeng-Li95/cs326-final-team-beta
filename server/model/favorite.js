@@ -19,13 +19,20 @@ class FavoriteRepository {
   }
 
   async addFavorite(productId, savedUserId) {
-    return await this.db.none(
-      "INSERT INTO favorite (productId,savedUserId) VALUES(${productId},${savedUserId})",
-      {
-        productId: productId,
-        savedUserId: savedUserId,
-      }
-    );
+    try {
+      await this.db.none(
+        "INSERT INTO favorite (productId,savedUserId) VALUES(${productId},${savedUserId})",
+        {
+          productId: productId,
+          savedUserId: savedUserId,
+        }
+      );
+
+      return true;
+    } catch (error) {
+      console.log("addFavorite error: " + error);
+      return false;
+    }
   }
 
   //if id is not delete correct using `+id` instead of `id`

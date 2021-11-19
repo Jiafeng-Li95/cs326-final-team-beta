@@ -52,7 +52,7 @@ async function getVendorDetails() {
   let id = url.searchParams.get("userId");
 
   let response = await fetch("/vendor/" + id, {
-    method: "GET"
+    method: "GET",
   });
 
   let vendor = await response.json();
@@ -109,6 +109,29 @@ function signOut() {
   window.location.replace("/");
 }
 
+//fetch favorite product for current user
+async function getFavorites() {
+  let url = new URL(window.location);
+  let id = url.searchParams.get("userId");
+
+  let response = await fetch("/favorite/all/" + id);
+
+  let favorites = await response.json();
+
+  let list = document.getElementById("favorite-list");
+  //clean the cache
+  list.innerHTML = "";
+
+  let group = document.createElement("ul");
+  group.classList.add("list-group");
+  list.appendChild(group);
+  favorites.forEach((favorites) => {
+    let item = document.createElement("li");
+    item.innerHTML = ` <strong> ${favorites.name} </strong> &nbsp&nbsp&nbsp  <strong> ${favorites.description} </strong>`;
+    list.appendChild(item);
+  });
+}
+
 window.addEventListener("load", getAllVendor);
 //load account details
 getVendorDetails();
@@ -129,3 +152,7 @@ document.getElementById("searchBar").addEventListener("keyup", (e) => {
 document.getElementById("signout").addEventListener("click", signOut);
 
 document.getElementById("editAccount").addEventListener("click", editAccount);
+
+document
+  .getElementById("show-favorite")
+  .addEventListener("click", getFavorites);

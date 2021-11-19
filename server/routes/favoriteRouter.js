@@ -20,7 +20,6 @@ favoriteRouter.post("/", async function (req, res) {
     req.body.productId,
     req.body.savedUserId
   );
-
   favorites
     ? res.status(201).json({ message: "added item successfully" })
     : res.status(409).json({ message: "add failed" });
