@@ -16,7 +16,7 @@ class ViewRepository {
         return await this.db.none(`DROP TABLE user`);
     }
 
-    //create a new user Information
+    //create a new user's page view (start from 0)
     async addUser(pv) {
         return await this.db.none(
             "INSERT INTO viewinfo (userid, numclicked) VALUES(${userid},${numclicked})",
@@ -27,7 +27,7 @@ class ViewRepository {
         );
     }
 
-    //return user Information by speicifed id
+    //return page view by speicifed id
     async getNumClickedById(id) {
         return await this.db.oneOrNone(
             "SELECT * FROM viewinfo WHERE userid = $1",
