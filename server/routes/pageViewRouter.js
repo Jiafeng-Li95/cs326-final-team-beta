@@ -4,7 +4,7 @@ const pageViewService = require("../services/pageViewService");
 
 //get vendor's page view record by specified id
 pageViewRouter.get("/:id", async function (req, res){
-    let pv = await pageViewService.getNumClickedById(req.params.id);
+    let pv = await pageViewService.getPageViewById(req.params.id);
     pv
       ? res.status(200).json(pv)
       : res.status(404).json({ message: "vendor not found" });
