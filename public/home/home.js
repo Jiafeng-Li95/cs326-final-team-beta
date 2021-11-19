@@ -42,6 +42,8 @@ async function getAllVendor() {
     vendor_list_div.appendChild(card);
     card_link_1.addEventListener("click", () => {
       window.location.href = "/page/page.html?userId=" + vendor.id;
+
+      //let response =  await()
     });
   });
 }

@@ -9,7 +9,7 @@ class ViewRepository {
         return await this.db.none(`CREATE TABLE IF NOT EXISTS viewinfo(
           userid int PRIMARY KEY,
           numclicked int not null
-      )`);
+        )`);
     }
 
     async dropTable() {
