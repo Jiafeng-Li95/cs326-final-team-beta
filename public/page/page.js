@@ -157,7 +157,7 @@ function addToCart() {
 
 let productId = 0;
 window.addEventListener("load", getAllProduct);
-getVendorDetails();
+window.addEventListener("load", getVendorDetails);
 window.addEventListener("load", getPageView);
 document.getElementById("signout").addEventListener("click", signOut);
 document.getElementById("backHome").addEventListener("click", backHomePage);
