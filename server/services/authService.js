@@ -3,11 +3,10 @@
 
 //get the db connection
 const db = require("../db");
-//require the productRepo
-const UserRepository = require("../model/user");
 
-//init the product repo
+const UserRepository = require("../model/user");
 const userRepository = new UserRepository(db);
+
 //bcrypt
 const bcrypt = require("bcrypt");
 
