@@ -56,7 +56,59 @@ button {
   border: none !important;
 }
 
-#pv{
+#pv {
   color: gray;
   font-size: 10px;
+}
+
+.notification {
+  background-color: #555;
+  color: white;
+  text-decoration: none;
+  padding-top: 0.5rem;
+  position: relative;
+  display: inline-block;
+  width: 6rem;
+  height: 2.5rem;
+  text-align: center;
+  align-items: center;
+}
+
+.notification:hover {
+  background: grey;
+  color: white;
+  cursor: pointer;
+}
+
+.notification .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 7px 0px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  font-size: 1rem;
+  text-align: center;
+  align-items: center;
+}
+
+.col-sm {
+  position: relative;
+}
+
+.like-no {
+  position: absolute;
+  top: -4rem;
+  right: 1rem;
+  font-size: 18px;
+}
+
+.view-no {
+  position: absolute;
+  top: -4rem;
+  right: 8rem;
+  font-size: 18px;
 }
