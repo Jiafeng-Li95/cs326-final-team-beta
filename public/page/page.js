@@ -132,18 +132,35 @@ async function getPageView() {
   let response = await fetch("/vendor/view/" + id, {
     method: "GET"
   });
-  let record = await response.json();
-  let num = record.numclicked + 1;
-  document.getElementById("viewValue").innerText = num;
-  //update 
-  let data = { userid: id, numclicked: num }
-  response = await fetch("/vendor/view/", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+  if (response.status === 200) {
+    let record = await response.json();
+    let num = record.numclicked + 1;
+
+    document.getElementById("viewValue").innerText = num;
+    //update 
+    let data = { userid: id, numclicked: num }
+    response = await fetch("/vendor/view/", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  }
+  else {
+    // add new view by userId
+    let data = { userid: id, numclicked: 1 }
+    response = await fetch("/vendor/view", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    document.getElementById("viewValue").innerText = 1;
+  }
+
 
 }
 
