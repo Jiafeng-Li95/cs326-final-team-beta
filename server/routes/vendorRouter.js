@@ -39,7 +39,7 @@ vendorRouter.put("/", async function (req, res) {
 
 // Like Event  
 // Like => Add new Like with vendor id 
-vendorRouter.post("/addLike", async function (req, res) {
+vendorRouter.post("/like", async function (req, res) {
   let flag = vendorService.addLike(req.body.vendor_id, req.body.like_number);
   flag
     // ? res.status(200).json({ message: "like Added successfully" })
@@ -48,7 +48,7 @@ vendorRouter.post("/addLike", async function (req, res) {
 });
 
 // Like => get Like number by vendor id 
-vendorRouter.get("/getLike/:id", async function (req, res) {
+vendorRouter.get("/like/:id", async function (req, res) {
   let like = await vendorService.getLikeInfoByVendorId(req.params.id);
   like
     ? res.status(200).json(like)
@@ -56,7 +56,7 @@ vendorRouter.get("/getLike/:id", async function (req, res) {
 });
 
 // Like => update Like number by vendor id
-vendorRouter.put("/updateLike", async function (req, res) {
+vendorRouter.put("/like", async function (req, res) {
   let flag = vendorService.updateLikeInfo(req.body.vendor_id, req.body.like_number);
   flag
     ? res.status(200).json({ message: "Like info updated" })
