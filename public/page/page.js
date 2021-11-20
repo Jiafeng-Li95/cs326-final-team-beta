@@ -3,7 +3,7 @@ async function getAllProduct() {
   let vendorId = url.searchParams.get("userId");
 
   let response = await fetch("/product/all/" + vendorId, {
-    method: "GET"
+    method: "GET",
   });
 
   if (!response.ok) {
@@ -109,13 +109,15 @@ async function getVendorDetails() {
   let id = url.searchParams.get("userId");
 
   let response = await fetch("/vendor/" + id, {
-    method: "GET"
+    method: "GET",
   });
 
   let vendor = await response.json();
 
   //update to account window
-  document.getElementById("storeName").innerHTML = `<i class="bi bi-person-circle"></i> ${vendor.name}`;
+  document.getElementById(
+    "storeName"
+  ).innerHTML = `<i class="bi bi-person-circle"></i> ${vendor.name}`;
   document.getElementById("storeDescription").innerText =
     "Description: " + vendor.description + "\n";
   document.getElementById("storeDescription").innerText +=
@@ -130,15 +132,15 @@ async function getPageView() {
   let id = url.searchParams.get("userId");
 
   let response = await fetch("/vendor/view/" + id, {
-    method: "GET"
+    method: "GET",
   });
   if (response.status === 200) {
     let record = await response.json();
     let num = record.numclicked + 1;
 
     document.getElementById("viewValue").innerText = num;
-    //update 
-    let data = { userid: id, numclicked: num }
+    //update
+    let data = { userid: id, numclicked: num };
     response = await fetch("/vendor/view/", {
       method: "PUT",
       headers: {
@@ -146,10 +148,9 @@ async function getPageView() {
       },
       body: JSON.stringify(data),
     });
-  }
-  else {
+  } else {
     // add new view by userId
-    let data = { userid: id, numclicked: 1 }
+    let data = { userid: id, numclicked: 1 };
     response = await fetch("/vendor/view", {
       method: "POST",
       headers: {
@@ -160,8 +161,6 @@ async function getPageView() {
     });
     document.getElementById("viewValue").innerText = 1;
   }
-
-
 }
 
 function backHomePage() {
@@ -178,7 +177,7 @@ function addToCart() {
   alert("Add to cart!");
 }
 
-// increment Like number in vendor page 
+// increment Like number in vendor page
 async function incrementLike() {
   let url = new URL(window.location);
   let id = url.searchParams.get("userId");
@@ -186,8 +185,8 @@ async function incrementLike() {
   let like_number = 0;
 
   //get like number by vendor id
-  let response = await fetch("/vendor/getLike/" + id, {
-    method: "GET"
+  let response = await fetch("/vendor/like/" + id, {
+    method: "GET",
   });
   if (response.status === 200) {
     let like = await response.json();
@@ -195,29 +194,29 @@ async function incrementLike() {
     like_number = like.like_number;
     //update the like number by 1
     let data = { vendor_id: vendor_id, like_number: parseInt(like_number) + 1 };
-    response = await fetch("/vendor/updateLike/", {
+    response = await fetch("/vendor/Like/", {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  } else {
+    //if not add new like number
+    let data = { vendor_id: id, like_number: 1 };
+    response = await fetch("/vendor/Like", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify(data),
     });
   }
 
-  //if not add new like number
-  let data = { vendor_id: id, like_number: 1 }
-  response = await fetch("/vendor/addLike", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
   //get like number and render to the vendor page
-  response = await fetch("/vendor/getLike/" + id, {
-    method: "GET"
+  response = await fetch("/vendor/Like/" + id, {
+    method: "GET",
   });
   if (response.status === 200) {
     let like = await response.json();
@@ -232,10 +231,9 @@ async function getLikeNumber() {
   let id = url.searchParams.get("userId");
   let like_number = 0;
 
-
   //get like number by vendor id
-  let response = await fetch("/vendor/getLike/" + id, {
-    method: "GET"
+  let response = await fetch("/vendor/like/" + id, {
+    method: "GET",
   });
   if (response.status === 200) {
     let like = await response.json();
@@ -244,7 +242,6 @@ async function getLikeNumber() {
   document.getElementById("likeValue").innerText = like_number;
 }
 
-
 let productId = 0;
 window.addEventListener("load", getAllProduct);
 window.addEventListener("load", getVendorDetails);
@@ -252,5 +249,7 @@ window.addEventListener("load", getPageView);
 window.addEventListener("load", getLikeNumber);
 document.getElementById("signout").addEventListener("click", signOut);
 document.getElementById("backHome").addEventListener("click", backHomePage);
-document.getElementById("createProduct").addEventListener("click", createProduct);
+document
+  .getElementById("createProduct")
+  .addEventListener("click", createProduct);
 document.getElementById("like").addEventListener("click", incrementLike);
