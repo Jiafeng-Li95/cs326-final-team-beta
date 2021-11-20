@@ -40,8 +40,36 @@ async function getAllVendor() {
     card_body.appendChild(document.createElement("br"));
     card.appendChild(card_footer);
     vendor_list_div.appendChild(card);
-    card_link_1.addEventListener("click", () => {
-      window.location.href = "/page/page.html?userId=" + vendor.id;
+
+    card_link_1.addEventListener("click", async function (){
+        window.location.href = "/page/page.html?userId=" + vendor.id;
+
+        let response = await fetch("/pageview/" + vendor.id, {
+            method: "GET"
+        });
+
+        if (!response.ok){
+            let pv = {userid: vendor.id, numclicked: 0};
+            await fetch("/pageview/", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Accept: "application/json"
+                },
+                body: JSON.stringify(pv)
+            });
+        }
+        else{
+            let record = await response.json();
+            let pv = {userid: vendor.id, numclicked: record.numclicked + 1};
+            await fetch("/pageview/", {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify(pv)
+            });
+        }
     });
   });
 }
@@ -56,7 +84,6 @@ async function getVendorDetails() {
   });
 
   let vendor = await response.json();
-  console.log(JSON.stringify(vendor));
 
   //update to account window
   document.getElementById("yardName").value = vendor.name;
@@ -80,7 +107,6 @@ async function editAccount() {
   let url = new URL(window.location);
   let id = url.searchParams.get("userId");
   vendor.userId = parseInt(id);
-  //console.log(vendor);
   let response = await fetch("/vendor/", {
     method: "PUT",
     headers: {
