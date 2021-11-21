@@ -16,7 +16,7 @@ let config = {
   host: process.env.POSTGRES_HOST || "localhost",
   database: process.env.POSTGRES_DB,
   user: process.env.POSTGRES_USER,
-  password: process.env.POSTGRES_PASSWORD
+  password: process.env.POSTGRES_PASSWORD,
 };
 const db = pg(config);
 

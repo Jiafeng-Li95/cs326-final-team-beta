@@ -5,6 +5,7 @@ const app = express();
 const authRouter = require("./routes/authRouter");
 const productRouter = require("./routes/productRouter");
 const vendorRouter = require("./routes/vendorRouter");
+const favoriteRouter = require("./routes/favoriteRouter");
 
 //need to place before the routers
 app.use(express.json());
@@ -17,6 +18,7 @@ app.use(
 //specify the route
 app.use("/auth", authRouter);
 app.use("/product", productRouter);
+app.use("/favorite", favoriteRouter);
 app.use("/vendor", vendorRouter);
 
 //server front-end as static page

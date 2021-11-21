@@ -41,35 +41,34 @@ async function getAllVendor() {
     card.appendChild(card_footer);
     vendor_list_div.appendChild(card);
 
-    card_link_1.addEventListener("click", async function (){
-        window.location.href = "/page/page.html?userId=" + vendor.id;
+    card_link_1.addEventListener("click", async function () {
+      window.location.href = "/page/page.html?userId=" + vendor.id;
 
-        let response = await fetch("/pageview/" + vendor.id, {
-            method: "GET"
+      let response = await fetch("/pageview/" + vendor.id, {
+        method: "GET",
+      });
+
+      if (!response.ok) {
+        let pv = { userid: vendor.id, numclicked: 0 };
+        await fetch("/pageview/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(pv),
         });
-
-        if (!response.ok){
-            let pv = {userid: vendor.id, numclicked: 0};
-            await fetch("/pageview/", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  Accept: "application/json"
-                },
-                body: JSON.stringify(pv)
-            });
-        }
-        else{
-            let record = await response.json();
-            let pv = {userid: vendor.id, numclicked: record.numclicked + 1};
-            await fetch("/pageview/", {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json"
-                },
-                body: JSON.stringify(pv)
-            });
-        }
+      } else {
+        let record = await response.json();
+        let pv = { userid: vendor.id, numclicked: record.numclicked + 1 };
+        await fetch("/pageview/", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(pv),
+        });
+      }
     });
   });
 }
@@ -80,7 +79,7 @@ async function getVendorDetails() {
   let id = url.searchParams.get("userId");
 
   let response = await fetch("/vendor/" + id, {
-    method: "GET"
+    method: "GET",
   });
 
   let vendor = await response.json();
@@ -135,6 +134,31 @@ function signOut() {
   window.location.replace("/");
 }
 
+//fetch favorite product for current user
+async function getFavorites() {
+  let url = new URL(window.location);
+  let id = url.searchParams.get("userId");
+
+  let response = await fetch("/favorite/all/" + id);
+
+  let favorites = await response.json();
+
+  if (favorites.length > 0) {
+    let list = document.getElementById("favorite-list");
+    //clean the cache
+    list.innerHTML = "";
+
+    let group = document.createElement("ul");
+    group.classList.add("list-group");
+    list.appendChild(group);
+    favorites.forEach((favorites) => {
+      let item = document.createElement("li");
+      item.innerHTML = ` <strong> ${favorites.name} </strong> &nbsp&nbsp&nbsp  <strong> ${favorites.description} </strong>`;
+      list.appendChild(item);
+    });
+  }
+}
+
 window.addEventListener("load", getAllVendor);
 //load account details
 getVendorDetails();
@@ -155,3 +179,7 @@ document.getElementById("searchBar").addEventListener("keyup", (e) => {
 document.getElementById("signout").addEventListener("click", signOut);
 
 document.getElementById("editAccount").addEventListener("click", editAccount);
+
+document
+  .getElementById("show-favorite")
+  .addEventListener("click", getFavorites);
