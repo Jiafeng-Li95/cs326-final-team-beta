@@ -47,7 +47,15 @@ async function getAllProduct() {
     button.innerText = "Delete";
     button.id = "button-delete" + index;
 
+    let add_button = document.createElement("div");
+    add_button.classList.add("btn");
+    add_button.classList.add("btn-outline-warning");
+    add_button.classList.add("pull-right");
+    add_button.innerText = "Save";
+    add_button.id = "button-add" + index;
+
     card_footer.appendChild(button);
+    card_footer.appendChild(add_button);
 
     card_body.appendChild(description);
 
@@ -58,13 +66,36 @@ async function getAllProduct() {
 
     // delet button event addEventListener
     document
-      .getElementById("button-delete" + index)
+      .getElementById("button-add" + index)
       .addEventListener("click", () => {
         // remove card container
-        document.getElementById("card-container" + index).remove();
+        document.getElementById("card-container" + index);
         // delete product
         deleteProduct(product);
       });
+
+    //add to favorite button
+    document
+      .getElementById("button-add" + index)
+      .addEventListener("click", () => {
+        // add to favorite product
+        deleteProduct(product.id);
+      });
+  });
+}
+
+async function addToFavorite(productId) {
+  //get the logined userId
+  let storage = window.localStorage;
+  let savedUserId = parseInt(storage.getItem("user"));
+
+  await fetch("/favorite/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({ productId: productId, savedUserId: savedUserId }),
   });
 }
 
@@ -231,14 +262,20 @@ async function getLikeNumber() {
   let id = url.searchParams.get("userId");
   let like_number = 0;
 
-  //get like number by vendor id
-  let response = await fetch("/vendor/like/" + id, {
-    method: "GET",
-  });
-  if (response.status === 200) {
-    let like = await response.json();
-    like_number = like.like_number;
+  try {
+    //get like number by vendor id
+    let response = await fetch("/vendor/like/" + id, {
+      method: "GET",
+    });
+    if (response.status === 200) {
+      let like = await response.json();
+      like_number = like.like_number;
+    }
+  } catch (err) {
+    //nothing
+    console.log("the vendor like not created yet ");
   }
+
   document.getElementById("likeValue").innerText = like_number;
 }
 

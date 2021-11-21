@@ -43,10 +43,11 @@ class ViewRepository {
   //update user information(For vendor)
   async updateViewInfo(pv) {
     try {
-      return await this.db.one(
+      await this.db.none(
         "UPDATE viewinfo SET numclicked = $1 WHERE userid = $2",
         [pv.numclicked, pv.userid]
       );
+      return true;
     } catch (err) {
       return null;
     }
