@@ -8,80 +8,82 @@ async function getAllProduct() {
 
   if (!response.ok) {
     return;
+  } else {
+    let products = await response.json();
+    const productList = document.getElementById("productList");
+
+    products.forEach((product, index) => {
+      let card = document.createElement("div");
+      card.classList.add("card");
+      card.classList.add("d-flex");
+      card.classList.add("w-50");
+      card.classList.add("justify-content-sm-center");
+      card.classList.add("card");
+      card.classList.add("border-success");
+      card.id = "card-container" + index;
+
+      let card_body = document.createElement("div");
+      card_body.classList.add("card-body");
+
+      let title = document.createElement("h5");
+      title.classList.add("card-header");
+      title.innerText = product.name;
+      card_body.appendChild(title);
+
+      let description = document.createElement("p");
+      description.classList.add("card-text");
+      description.innerText = product.description;
+
+      let card_footer = document.createElement("div");
+      card_footer.classList.add("card-footer");
+      card_footer.classList.add("bg-transparent");
+      card_footer.classList.add("border-success");
+
+      let button = document.createElement("div");
+      button.classList.add("btn");
+      button.classList.add("btn-outline-primary");
+      button.classList.add("pull-right");
+      button.classList.add("ml-3");
+      button.innerText = "Delete";
+      button.id = "button-delete" + index;
+
+      let add_button = document.createElement("div");
+      add_button.classList.add("btn");
+      add_button.classList.add("btn-outline-danger");
+      add_button.classList.add("pull-right");
+      add_button.classList.add("px-3");
+      add_button.innerText = "Save";
+      add_button.id = "button-add" + index;
+
+      card_footer.appendChild(button);
+      card_footer.appendChild(add_button);
+
+      card_body.appendChild(description);
+
+      card.appendChild(card_body);
+      card.appendChild(card_footer);
+
+      productList.appendChild(card);
+
+      // delet button event addEventListener
+      document
+        .getElementById("button-delete" + index)
+        .addEventListener("click", () => {
+          // remove card container
+          document.getElementById("card-container" + index);
+          // delete product
+          deleteProduct(product);
+        });
+
+      //add to favorite button
+      document
+        .getElementById("button-add" + index)
+        .addEventListener("click", () => {
+          // add to favorite product
+          addToFavorite(product.id);
+        });
+    });
   }
-
-  let products = await response.json();
-  const productList = document.getElementById("productList");
-
-  products.forEach((product, index) => {
-    let card = document.createElement("div");
-    card.classList.add("card");
-    card.classList.add("d-flex");
-    card.classList.add("w-50");
-    card.classList.add("justify-content-sm-center");
-    card.classList.add("card");
-    card.classList.add("border-success");
-    card.id = "card-container" + index;
-
-    let card_body = document.createElement("div");
-    card_body.classList.add("card-body");
-
-    let title = document.createElement("h5");
-    title.classList.add("card-header");
-    title.innerText = product.name;
-    card_body.appendChild(title);
-
-    let description = document.createElement("p");
-    description.classList.add("card-text");
-    description.innerText = product.description;
-
-    let card_footer = document.createElement("div");
-    card_footer.classList.add("card-footer");
-    card_footer.classList.add("bg-transparent");
-    card_footer.classList.add("border-success");
-
-    let button = document.createElement("div");
-    button.classList.add("btn");
-    button.classList.add("btn-outline-primary");
-    button.classList.add("pull-right");
-    button.innerText = "Delete";
-    button.id = "button-delete" + index;
-
-    let add_button = document.createElement("div");
-    add_button.classList.add("btn");
-    add_button.classList.add("btn-outline-warning");
-    add_button.classList.add("pull-right");
-    add_button.innerText = "Save";
-    add_button.id = "button-add" + index;
-
-    card_footer.appendChild(button);
-    card_footer.appendChild(add_button);
-
-    card_body.appendChild(description);
-
-    card.appendChild(card_body);
-    card.appendChild(card_footer);
-
-    productList.appendChild(card);
-
-    // delet button event addEventListener
-    document
-      .getElementById("button-add" + index)
-      .addEventListener("click", () => {
-        // remove card container
-        document.getElementById("card-container" + index);
-        // delete product
-        deleteProduct(product);
-      });
-
-    //add to favorite button
-    document
-      .getElementById("button-add" + index)
-      .addEventListener("click", () => {
-        // add to favorite product
-        deleteProduct(product.id);
-      });
-  });
 }
 
 async function addToFavorite(productId) {
@@ -100,11 +102,10 @@ async function addToFavorite(productId) {
 }
 
 async function deleteProduct(product) {
-  let response = await fetch("/product/" + product.id, {
+  await fetch("/product/" + product.id, {
     method: "DELETE",
   });
-  let vendor = await response.json();
-  console.log(vendor);
+  location.reload();
 }
 
 async function createProduct() {

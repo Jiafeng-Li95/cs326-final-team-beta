@@ -41,35 +41,34 @@ async function getAllVendor() {
     card.appendChild(card_footer);
     vendor_list_div.appendChild(card);
 
-    card_link_1.addEventListener("click", async function (){
-        window.location.href = "/page/page.html?userId=" + vendor.id;
+    card_link_1.addEventListener("click", async function () {
+      window.location.href = "/page/page.html?userId=" + vendor.id;
 
-        let response = await fetch("/pageview/" + vendor.id, {
-            method: "GET"
+      let response = await fetch("/pageview/" + vendor.id, {
+        method: "GET",
+      });
+
+      if (!response.ok) {
+        let pv = { userid: vendor.id, numclicked: 0 };
+        await fetch("/pageview/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(pv),
         });
-
-        if (!response.ok){
-            let pv = {userid: vendor.id, numclicked: 0};
-            await fetch("/pageview/", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  Accept: "application/json"
-                },
-                body: JSON.stringify(pv)
-            });
-        }
-        else{
-            let record = await response.json();
-            let pv = {userid: vendor.id, numclicked: record.numclicked + 1};
-            await fetch("/pageview/", {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json"
-                },
-                body: JSON.stringify(pv)
-            });
-        }
+      } else {
+        let record = await response.json();
+        let pv = { userid: vendor.id, numclicked: record.numclicked + 1 };
+        await fetch("/pageview/", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(pv),
+        });
+      }
     });
   });
 }
@@ -144,18 +143,20 @@ async function getFavorites() {
 
   let favorites = await response.json();
 
-  let list = document.getElementById("favorite-list");
-  //clean the cache
-  list.innerHTML = "";
+  if (favorites.length > 0) {
+    let list = document.getElementById("favorite-list");
+    //clean the cache
+    list.innerHTML = "";
 
-  let group = document.createElement("ul");
-  group.classList.add("list-group");
-  list.appendChild(group);
-  favorites.forEach((favorites) => {
-    let item = document.createElement("li");
-    item.innerHTML = ` <strong> ${favorites.name} </strong> &nbsp&nbsp&nbsp  <strong> ${favorites.description} </strong>`;
-    list.appendChild(item);
-  });
+    let group = document.createElement("ul");
+    group.classList.add("list-group");
+    list.appendChild(group);
+    favorites.forEach((favorites) => {
+      let item = document.createElement("li");
+      item.innerHTML = ` <strong> ${favorites.name} </strong> &nbsp&nbsp&nbsp  <strong> ${favorites.description} </strong>`;
+      list.appendChild(item);
+    });
+  }
 }
 
 window.addEventListener("load", getAllVendor);

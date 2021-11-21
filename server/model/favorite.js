@@ -10,7 +10,7 @@ class FavoriteRepository {
           id serial PRIMARY KEY,
           savedUserId int,
           productId int,
-          FOREIGN KEY(productId) REFERENCES product(id)
+          FOREIGN KEY(productId) REFERENCES product(id) ON DELETE CASCADE ON UPDATE CASCADE
       )`);
   }
 
