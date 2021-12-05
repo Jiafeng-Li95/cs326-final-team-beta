@@ -12,14 +12,14 @@ const userRepository = new UserRepository(db);
 
 //router for sign in
 authRouter.post("/login", async (req, res) => {
-  let user = await authService.loginAuth(req.body);
 
+  let user = await authService.loginAuth(req.body);
   const userInfo = await userRepository.getUserInfoByUsername(
     req.body.username
   );
 
   if (user) {
-    res.status(200).json(JSON.stringify(userInfo));
+    res.status(200).json((userInfo));
   } else {
     res.status(401).json({ message: "Failed login has happened" });
   }
