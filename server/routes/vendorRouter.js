@@ -21,6 +21,9 @@ vendorRouter.get("/:id", async function (req, res) {
 
 //delete vendor by specified id
 //protect by admin
+
+// add middleware 
+
 vendorRouter.delete("/:id", async function (req, res) {
   let flag = await vendorService.deleteVendorById(parseInt(req.params.id));
   flag
@@ -88,6 +91,7 @@ vendorRouter.put("/view", async function (req, res) {
     ? res.status(201).json({ message: "record update successfully" })
     : res.status(409).json({ message: "record update failed" });
 });
+
 
 //end of file
 module.exports = vendorRouter;
