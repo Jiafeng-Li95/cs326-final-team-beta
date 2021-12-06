@@ -55,7 +55,6 @@ function checkDeleteUserId(req, res, next) {
   const words = req.params.productId.split(' ');
   let vendorId = words[2];
   let userId = words[1];
-  console.log(vendorId + " " + userId);
   if (vendorId === userId) {
     next();
   } else {
