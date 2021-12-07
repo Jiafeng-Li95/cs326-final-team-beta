@@ -15,6 +15,7 @@ app.use(
   })
 );
 
+
 //specify the route
 app.use("/auth", authRouter);
 app.use("/product", productRouter);

@@ -77,8 +77,8 @@ async function getAllVendor() {
 //fetch user details
 async function getVendorDetails() {
   let url = new URL(window.location);
-  let id = url.searchParams.get("userId");
-
+  // let id = url.searchParams.get("userId");
+  let id = window.localStorage.getItem("user");
   let response = await fetch("/vendor/" + id, {
     method: "GET",
   });
@@ -131,6 +131,7 @@ async function editAccount() {
 //sign out
 function signOut() {
   //remove token from localstorage
+  window.localStorage.removeItem("user");
   //redirect to login page
   window.location.replace("/");
 }
@@ -159,10 +160,20 @@ async function getFavorites() {
     });
   }
 }
+function checkloggin() {
+
+  let localStorage = window.localStorage;
+  let id = localStorage.getItem('user');
+
+  if (!id) {
+    console.log(id);
+    window.location.replace("/");
+  }
+}
+
 
 window.addEventListener("load", getAllVendor);
-//load account details
-getVendorDetails();
+
 
 //search bar functionality
 document.getElementById("searchBar").addEventListener("keyup", (e) => {
@@ -184,3 +195,8 @@ document.getElementById("editAccount").addEventListener("click", editAccount);
 document
   .getElementById("show-favorite")
   .addEventListener("click", getFavorites);
+
+
+//load account details
+getVendorDetails();
+checkloggin();

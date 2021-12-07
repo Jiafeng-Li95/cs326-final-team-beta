@@ -212,6 +212,8 @@ function backHomePage() {
 
 function signOut() {
   //remove token from localstorage
+  let localStorage = window.localStorage;
+  localStorage.removeItem("user");
   //redirect to login page
   window.location.replace("/");
 }
@@ -291,6 +293,18 @@ async function getLikeNumber() {
   document.getElementById("likeValue").innerText = like_number;
 }
 
+function checkloggin() {
+
+  let localStorage = window.localStorage;
+  let id = localStorage.getItem('user');
+
+  if (!id) {
+    console.log(id);
+    window.location.replace("/");
+  }
+}
+
+
 let productId = 0;
 window.addEventListener("load", getAllProduct);
 window.addEventListener("load", getVendorDetails);
@@ -302,3 +316,4 @@ document
   .getElementById("createProduct")
   .addEventListener("click", createProduct);
 document.getElementById("like").addEventListener("click", incrementLike);
+checkloggin();

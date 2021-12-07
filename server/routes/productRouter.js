@@ -2,9 +2,6 @@ const express = require("express");
 const productRouter = express.Router();
 const productService = require("../services/productService");
 
-
-
-
 //get all products by specified vendor
 //TESTED
 productRouter.get("/all/:vendorId", async function (req, res) {
@@ -58,9 +55,10 @@ function checkDeleteUserId(req, res, next) {
   if (vendorId === userId) {
     next();
   } else {
-    res.status(404).json({ message: "vendorId and userId not match" })
+    res.status(404).json({ message: "vendorId and userId not match" });
   }
 }
+
 
 function checkUpdateUserId(req, res, next) {
   let vendorId = req.body.vendorId;
@@ -68,7 +66,7 @@ function checkUpdateUserId(req, res, next) {
   if (vendorId === userId) {
     next();
   } else {
-    res.status(404).json({ message: "vendorId and userId not match" })
+    res.status(404).json({ message: "vendorId and userId not match" });
   }
 }
 

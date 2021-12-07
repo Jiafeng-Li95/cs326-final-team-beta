@@ -22,7 +22,6 @@ vendorRouter.get("/:id", async function (req, res) {
 //delete vendor by specified id
 //protect by admin
 
-// add middleware 
 
 vendorRouter.delete("/:id", async function (req, res) {
   let flag = await vendorService.deleteVendorById(parseInt(req.params.id));
