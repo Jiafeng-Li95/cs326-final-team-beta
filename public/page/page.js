@@ -102,9 +102,15 @@ async function addToFavorite(productId) {
 }
 
 async function deleteProduct(product) {
-  await fetch("/product/" + product.id, {
+  let url = new URL(window.location);
+  let userId = window.localStorage.getItem("user");
+  let vendorId = url.searchParams.get("userId");
+  let response = await fetch("/product/" + product.id + " " + userId + " " + vendorId, {
     method: "DELETE",
   });
+  if (response.status === 404) {
+    alert("vendor and userId not match");
+  }
   location.reload();
 }
 
@@ -113,11 +119,13 @@ async function createProduct() {
   let description = document.getElementById("description").value;
   let url = new URL(window.location);
   let vendorId = url.searchParams.get("userId");
+  let userId = window.localStorage.getItem("user");
 
   let product = {
     name: name,
     description: description,
-    userId: parseInt(vendorId),
+    vendorId: parseInt(vendorId),
+    userId: parseInt(userId)
   };
 
   let response = await fetch("/product/", {
@@ -131,7 +139,10 @@ async function createProduct() {
 
   if (response.status === 201) {
     location.reload();
-    console.log("create successed");
+  }
+  else {
+    alert("Vendor and userId not match");
+    location.reload();
   }
 }
 
@@ -201,6 +212,8 @@ function backHomePage() {
 
 function signOut() {
   //remove token from localstorage
+  let localStorage = window.localStorage;
+  localStorage.removeItem("user");
   //redirect to login page
   window.location.replace("/");
 }
@@ -280,6 +293,18 @@ async function getLikeNumber() {
   document.getElementById("likeValue").innerText = like_number;
 }
 
+function checkloggin() {
+
+  let localStorage = window.localStorage;
+  let id = localStorage.getItem('user');
+
+  if (!id) {
+    console.log(id);
+    window.location.replace("/");
+  }
+}
+
+
 let productId = 0;
 window.addEventListener("load", getAllProduct);
 window.addEventListener("load", getVendorDetails);
@@ -291,3 +316,4 @@ document
   .getElementById("createProduct")
   .addEventListener("click", createProduct);
 document.getElementById("like").addEventListener("click", incrementLike);
+checkloggin();

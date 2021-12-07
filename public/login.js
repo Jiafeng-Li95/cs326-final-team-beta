@@ -19,7 +19,7 @@ async function sign_in() {
     body: JSON.stringify(data),
   });
 
-  const nextData = JSON.parse(await response.json());
+  const nextData = (await response.json());
 
   if (response.status === 200) {
     //save current signedIn user id
