@@ -167,32 +167,37 @@ function checkloggin() {
   if (!id) {
     console.log(id);
     window.location.replace("/");
+    return false;
   }
+  return true;
 }
 
-window.addEventListener("load", getAllVendor);
+if (checkloggin()) {
+  window.addEventListener("load", getAllVendor);
 
-//search bar functionality
-document.getElementById("searchBar").addEventListener("keyup", (e) => {
-  let vendors = document.getElementsByTagName("h5");
+  //search bar functionality
+  document.getElementById("searchBar").addEventListener("keyup", (e) => {
+    let vendors = document.getElementsByTagName("h5");
 
-  for (let i = 0; i < vendors.length; i++) {
-    if (
-      vendors[i].innerText.toLowerCase().includes(e.target.value.toLowerCase())
-    ) {
-      vendors[i].scrollIntoView();
+    for (let i = 0; i < vendors.length; i++) {
+      if (
+        vendors[i].innerText
+          .toLowerCase()
+          .includes(e.target.value.toLowerCase())
+      ) {
+        vendors[i].scrollIntoView();
+      }
     }
-  }
-});
+  });
 
-document.getElementById("signout").addEventListener("click", signOut);
+  document.getElementById("signout").addEventListener("click", signOut);
 
-document.getElementById("editAccount").addEventListener("click", editAccount);
+  document.getElementById("editAccount").addEventListener("click", editAccount);
 
-document
-  .getElementById("show-favorite")
-  .addEventListener("click", getFavorites);
+  document
+    .getElementById("show-favorite")
+    .addEventListener("click", getFavorites);
 
-//load account details
-getVendorDetails();
-checkloggin();
+  //load account details
+  getVendorDetails();
+}
