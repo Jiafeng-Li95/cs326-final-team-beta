@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 async function getAllVendor() {
   let response = await fetch("/vendor/all", {
     method: "GET",
@@ -76,8 +78,6 @@ async function getAllVendor() {
 
 //fetch user details
 async function getVendorDetails() {
-  let url = new URL(window.location);
-  // let id = url.searchParams.get("userId");
   let id = window.localStorage.getItem("user");
   let response = await fetch("/vendor/" + id, {
     method: "GET",
@@ -161,9 +161,8 @@ async function getFavorites() {
   }
 }
 function checkloggin() {
-
   let localStorage = window.localStorage;
-  let id = localStorage.getItem('user');
+  let id = localStorage.getItem("user");
 
   if (!id) {
     console.log(id);
@@ -171,9 +170,7 @@ function checkloggin() {
   }
 }
 
-
 window.addEventListener("load", getAllVendor);
-
 
 //search bar functionality
 document.getElementById("searchBar").addEventListener("keyup", (e) => {
@@ -195,7 +192,6 @@ document.getElementById("editAccount").addEventListener("click", editAccount);
 document
   .getElementById("show-favorite")
   .addEventListener("click", getFavorites);
-
 
 //load account details
 getVendorDetails();

@@ -105,9 +105,12 @@ async function deleteProduct(product) {
   let url = new URL(window.location);
   let userId = window.localStorage.getItem("user");
   let vendorId = url.searchParams.get("userId");
-  let response = await fetch("/product/" + product.id + " " + userId + " " + vendorId, {
-    method: "DELETE",
-  });
+  let response = await fetch(
+    "/product/" + product.id + " " + userId + " " + vendorId,
+    {
+      method: "DELETE",
+    }
+  );
   if (response.status === 404) {
     alert("vendor and userId not match");
   }
@@ -125,7 +128,7 @@ async function createProduct() {
     name: name,
     description: description,
     vendorId: parseInt(vendorId),
-    userId: parseInt(userId)
+    userId: parseInt(userId),
   };
 
   let response = await fetch("/product/", {
@@ -139,8 +142,7 @@ async function createProduct() {
 
   if (response.status === 201) {
     location.reload();
-  }
-  else {
+  } else {
     alert("Vendor and userId not match");
     location.reload();
   }
@@ -218,10 +220,6 @@ function signOut() {
   window.location.replace("/");
 }
 
-function addToCart() {
-  alert("Add to cart!");
-}
-
 // increment Like number in vendor page
 async function incrementLike() {
   let url = new URL(window.location);
@@ -294,9 +292,8 @@ async function getLikeNumber() {
 }
 
 function checkloggin() {
-
   let localStorage = window.localStorage;
-  let id = localStorage.getItem('user');
+  let id = localStorage.getItem("user");
 
   if (!id) {
     console.log(id);
@@ -304,8 +301,6 @@ function checkloggin() {
   }
 }
 
-
-let productId = 0;
 window.addEventListener("load", getAllProduct);
 window.addEventListener("load", getVendorDetails);
 window.addEventListener("load", getPageView);
