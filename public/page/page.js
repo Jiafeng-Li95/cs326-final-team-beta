@@ -298,17 +298,21 @@ function checkloggin() {
   if (!id) {
     console.log(id);
     window.location.replace("/");
+    return false;
   }
+
+  return true;
 }
 
-window.addEventListener("load", getAllProduct);
-window.addEventListener("load", getVendorDetails);
-window.addEventListener("load", getPageView);
-window.addEventListener("load", getLikeNumber);
-document.getElementById("signout").addEventListener("click", signOut);
-document.getElementById("backHome").addEventListener("click", backHomePage);
-document
-  .getElementById("createProduct")
-  .addEventListener("click", createProduct);
-document.getElementById("like").addEventListener("click", incrementLike);
-checkloggin();
+if (checkloggin()) {
+  window.addEventListener("load", getAllProduct);
+  window.addEventListener("load", getVendorDetails);
+  window.addEventListener("load", getPageView);
+  window.addEventListener("load", getLikeNumber);
+  document.getElementById("signout").addEventListener("click", signOut);
+  document.getElementById("backHome").addEventListener("click", backHomePage);
+  document
+    .getElementById("createProduct")
+    .addEventListener("click", createProduct);
+  document.getElementById("like").addEventListener("click", incrementLike);
+}
