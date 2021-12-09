@@ -1,4 +1,6 @@
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -17,7 +19,8 @@ body {
   align-items: center;
 }
 
-input, button {
+input,
+button {
   border: none;
   outline: none;
   background: none;
@@ -267,7 +270,7 @@ input {
 }
 
 .submit {
-  margin-top: 5px;
+  margin-top: 25px;
   margin-bottom: 20px;
   /* font-family: Comic Sans MS, Comic Sans, cursive; */
   background: -webkit-linear-gradient(left, #419169, #41a370a2);
@@ -330,5 +333,5 @@ input {
 }
 
 .IsVendor-label input {
-  width: 100%
+  width: 100%;
 }

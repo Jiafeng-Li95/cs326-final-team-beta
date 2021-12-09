@@ -40,7 +40,7 @@ class UserRepository {
 
     //return user Information by speicifed username
     async getUserInfoByUsername(username) {
-        return await this.db.one(
+        return await this.db.oneOrNone(
             "SELECT * FROM userInfo WHERE username = $1",
             username
         );
