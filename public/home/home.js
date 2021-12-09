@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 async function getAllVendor() {
   let response = await fetch("/vendor/all", {
     method: "GET",
@@ -76,8 +78,6 @@ async function getAllVendor() {
 
 //fetch user details
 async function getVendorDetails() {
-  let url = new URL(window.location);
-  // let id = url.searchParams.get("userId");
   let id = window.localStorage.getItem("user");
   let response = await fetch("/vendor/" + id, {
     method: "GET",
@@ -161,42 +161,43 @@ async function getFavorites() {
   }
 }
 function checkloggin() {
-
   let localStorage = window.localStorage;
-  let id = localStorage.getItem('user');
+  let id = localStorage.getItem("user");
 
   if (!id) {
     console.log(id);
     window.location.replace("/");
+    return false;
   }
+  return true;
 }
 
+if (checkloggin()) {
+  window.addEventListener("load", getAllVendor);
 
-window.addEventListener("load", getAllVendor);
+  //search bar functionality
+  document.getElementById("searchBar").addEventListener("keyup", (e) => {
+    let vendors = document.getElementsByTagName("h5");
 
-
-//search bar functionality
-document.getElementById("searchBar").addEventListener("keyup", (e) => {
-  let vendors = document.getElementsByTagName("h5");
-
-  for (let i = 0; i < vendors.length; i++) {
-    if (
-      vendors[i].innerText.toLowerCase().includes(e.target.value.toLowerCase())
-    ) {
-      vendors[i].scrollIntoView();
+    for (let i = 0; i < vendors.length; i++) {
+      if (
+        vendors[i].innerText
+          .toLowerCase()
+          .includes(e.target.value.toLowerCase())
+      ) {
+        vendors[i].scrollIntoView();
+      }
     }
-  }
-});
+  });
 
-document.getElementById("signout").addEventListener("click", signOut);
+  document.getElementById("signout").addEventListener("click", signOut);
 
-document.getElementById("editAccount").addEventListener("click", editAccount);
+  document.getElementById("editAccount").addEventListener("click", editAccount);
 
-document
-  .getElementById("show-favorite")
-  .addEventListener("click", getFavorites);
+  document
+    .getElementById("show-favorite")
+    .addEventListener("click", getFavorites);
 
-
-//load account details
-getVendorDetails();
-checkloggin();
+  //load account details
+  getVendorDetails();
+}
