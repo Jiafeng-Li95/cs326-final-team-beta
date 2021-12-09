@@ -19,7 +19,7 @@ async function sign_in() {
     body: JSON.stringify(data),
   });
 
-  const nextData = (await response.json());
+  const nextData = await response.json();
 
   if (response.status === 200) {
     //save current signedIn user id
@@ -46,7 +46,7 @@ async function sign_up() {
     description: document.getElementById("description-signup").value,
     location: document.getElementById("location-signup").value,
     phonenumber: document.getElementById("phone-number-signup").value,
-    isVendor: document.getElementById("checkbox-signup").checked,
+    isVendor: true,
   };
 
   let response = await fetch("/auth/signup", {
