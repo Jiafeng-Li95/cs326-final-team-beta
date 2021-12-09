@@ -301,6 +301,41 @@ For authorization, to prevent user directly access our endpoint such as /product
 
 
 
+# Rubric(100):
+#### Login Page(10):
+| Feature  | Satisfactory (1)   |  Good(3) |  Excellent(5) |  Description |
+|---|---|---|---|---|
+| Sign in (5)  | Take the username and password as parameters and auth the user info locally.  | Take the username and password as parameters, call auth/login api and auth the user info locally.| Take the username and passwords as parameters, call api and auth the user info with heroku database. | Users enter username and password to sign in to Yardology home page. Then call auth/login to auth the user info with the database.|
+  | Sign up (5)  | Take all inputs and store them in a static local variable.| Take all inputs and store them in the local database.  | Take all inputs and store them in the heroku database.  | Users enter username, password, name, description, location, phone number, and is a vendor to create a new user.|
+
+#### Home Page(30):
+| Feature  | Satisfactory (1)   |  Good(3) |  Excellent(5) |  Description |
+|---|---|---|---|---|
+| Search bar(5) | The search bar cannot take any input  | Take the store name and cannot jump to the corresponding store display card  | Take the store name and jump to the corresponding store display card  |   The user enters the store name and jumps to the corresponding store display card|
+| Vendor display card(5) | Cannot generate and fetch the vendor display card from the database (Or No responding to a Favorite button).  | Click a vendor button and jump to a vendor page with wrong information  | Click a vendor button and jump to a vendor page with the corresponding vendor information  | Fetch the vendor info from the database and generate a vendor display card.The users click on a Vendor button and jump to a corresponding vendor page  | 
+| Favorite(5)  | No responding to the Favorite button  | Click the Favorite button and show the popup with wrong user favorite information.  | Click the Favorite button and show the popup with the corresponding user favorite information  | The users click on the Favorite button and show a popup with the favorite items added by them. Favorite items fetch from the database  | 
+| Account(5) | No responding to the Account button   | Click the Account button and show the popup with wrong user information  | Click the Account button and show the popup with the corresponding user information  | The users click on the Account button and show a popup with the account info. Account info fetch from the database  |
+| Help(5)  | No responding to the Help button  |   | Click the Help button and show the popup with the programmer information  | The users click on the Help button and show a popup with the programmer information  | 
+| Sign Out(5)  | No responding to the Signout button  |   | Click the Signout button and jump back to the login page  | The users click on the Signout button and jump back to the login page  |
+
+#### Vendor Page(40):
+| Feature  | Satisfactory (1)   |  Good(3) |  Excellent(5) |  Description |
+|---|---|---|---|---|
+| Item display card(5)  | cannot generate the list of item display cards. Or buttons are not responding  | generate the list of item display cards. One of the buttons works correctly  | generate the list of item display cards. Both buttons work correctly  | Render and generate the list of vendor items. Each of the vendor items should show product name and description. The user can click the save button and add items to their favorite list. Also the vendor owner can delete the items(User cannot modify items).  |
+| Add(5)  | No responding to the Add button  | Show a popup with input fields. But cannot add new products to the database  | Show a popup with input fields. Can add new products to the database.(Item display card will update and show new product if it added to database)  | The vendor owner can add new products to their store. (Users cannot do this action)  |
+| Home(5)  | No responding to the Home button  | Click the Home button and jump back to the home page with the wrong user ID in the URL.  | Click the Home button and jump back to the home page with the correct user ID  | The users click on the Home button and jump back to the Home page  |
+| Help(5)  | No responding to the Help button  |   | Click the Help button and show the popup with the programmer information  | The users click on the Help button and show a popup with the programmer information  |
+| Sign Out(5)  | No responding to the Signout button  |   | Click the Signout button and jump back to the login page  | The users click on the Signout button and jump back to the login page  |
+| View(5)  | View fields are always zero  | View fields cannot be incremented by each user visited  | View fields display the number of the views and can be incremented by each user visited  | Display how many viewers visited the vendor page.   |
+| Like(5)  | Like fields are always zero  | Like fields cannot be incremented by user click  | Like fields display the number of likes and can be incremented by user click  | The users can click the Like button to raise the number of likes to this vendor page and Display how many users like the vendor page  |
+| Vendor Info(5)  | Display nothing in the area  | Display the wrong vendor information  | Display the corresponding vendor information with name, description, location, and phone number  | Display the vendor name, description, location, and phone number to the user who visited the corresponding vendor page  |
+
+#### Final Video(10):
+Video should display three pages with all the features described above. First, the video should simulate sign in and sign up on the login page. Second, the video should display a search bar, vendor display card, favorite button, account button, help button, and sign out button on the home page. Third, the video should simulate the product(item) display card, add button, home button, help button, sign out button, view field, like button, and vendor info on the vendor page.
+
+#### Heroku deployment(10):
+The application can be successfully deployed to Heroku. All grading will be done by testing and examining the code for the publicly-accessible website. The application source code should be deployed publicly. 
+
 # Conclusion
 
 We learned a lot of useful knowledge and experience from the mock-ups to the development of the project. We learned the importance of user experience and we made sure that the workflow was intuitive and consistent in our user interface so that users know how to use the application much faster. We also tried to implement the code according to our proposed n-tier architecture. Following the n-tier architecture was quite difficult at first, as we had to make sure that each layer did its own work. Nevertheless, we had better scalability and it was easier to upgrade and change the separate layers when we had more features coming up. This gives us the advantage that we don't run into code conflicts while developing. The docker image makes it easy to start a local database without the hassle of working on a different OS. Although it had a learning curve, we are quite happy when the docker container was up running. One thing our team wished we had known before starting the project was to have one person write all the css style code so that each page would have the same user interface style. Because in the beginning, three of us had different user interface styles in terms of colors, elements, etc. So we managed to unify our interface elements and make our user interface design more consistent. Overall, it was a valuable and rewarding experience, and we believe that is an inaccessible part of our journey to become better engineers.
