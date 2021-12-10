@@ -330,10 +330,17 @@ For authorization, to prevent user directly access our endpoint such as /product
 | Like(5)  | Like fields are always zero  | Like fields cannot be incremented by user click  | Like fields display the number of likes and can be incremented by user click  | The users can click the Like button to raise the number of likes to this vendor page and Display how many users like the vendor page  |
 | Vendor Info(5)  | Display nothing in the area  | Display the wrong vendor information  | Display the corresponding vendor information with name, description, location, and phone number  | Display the vendor name, description, location, and phone number to the user who visited the corresponding vendor page  |
 
-#### Final Video(10):
+#### Basic Architecture of Our Application(5):
+The client call REST API through three layers. They are Routes(Auth, Product, Vendor, and favorite), Services(Auth, Product, favorite, and Vendor), and Model(User, Product, viewed, like, and favorite). Then, Services will connect to the database. We use Postgres as our open-sourse database. In addition, we apply docker to clean environment for testing, without a need for complex orchestration.
+
+#### Others(5):
+Middleware: We use middleware to protect the productRouter to verify the user ID and vendor ID. If they both match, then call next to execute the following code. If not, then return 404 to frontend. 
+Bcrypt: We implement bcrypt to hashing the password before sending it to the database in the process of creating a new user and verify the user password by decrypting the password from the database on the process of login authentication.
+
+#### Final Video(5):
 Video should display three pages with all the features described above. First, the video should simulate sign in and sign up on the login page. Second, the video should display a search bar, vendor display card, favorite button, account button, help button, and sign out button on the home page. Third, the video should simulate the product(item) display card, add button, home button, help button, sign out button, view field, like button, and vendor info on the vendor page.
 
-#### Heroku deployment(10):
+#### Heroku deployment(5):
 The application can be successfully deployed to Heroku. All grading will be done by testing and examining the code for the publicly-accessible website. The application source code should be deployed publicly. 
 
 # Conclusion
