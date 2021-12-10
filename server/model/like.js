@@ -8,7 +8,7 @@ class LikeRepository {
   async createTable() {
     return await this.db.none(`CREATE TABLE IF NOT EXISTS likeInfo(
           vendor_id serial PRIMARY KEY,
-          like_number varchar(255) NOT NULL 
+          like_number int NOT NULL 
       )`);
   }
 
