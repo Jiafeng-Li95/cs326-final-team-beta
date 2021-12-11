@@ -88,8 +88,8 @@ async function getAllProduct() {
 
 //fetch favorite product for current user
 async function getFavorites() {
-  let url = new URL(window.location);
-  let id = url.searchParams.get("userId");
+  //get login user id
+  let id = window.localStorage.getItem("user");
 
   let response = await fetch("/favorite/all/" + id);
 
