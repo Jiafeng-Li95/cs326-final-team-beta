@@ -86,7 +86,29 @@ async function getAllProduct() {
   }
 }
 
+//fetch favorite product for current user
+async function getFavorites() {
+  let url = new URL(window.location);
+  let id = url.searchParams.get("userId");
+
+  let response = await fetch("/favorite/all/" + id);
+
+  return await response.json();
+}
+
 async function addToFavorite(productId) {
+  //get the list of favorites
+  let res = await getFavorites();
+
+  //not add to db if already saved
+  if (res) {
+    for (let i = 0; i < res.length; i++) {
+      if (res[i].productid === productId) {
+        return;
+      }
+    }
+  }
+
   //get the logined userId
   let storage = window.localStorage;
   let savedUserId = parseInt(storage.getItem("user"));
